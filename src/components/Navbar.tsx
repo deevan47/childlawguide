@@ -24,15 +24,14 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigateHome, onNavigateTopic }) => {
     >
       <div className="container mx-auto px-6 h-[72px] flex items-center justify-between">
         
-        {/* Logo Section */}
-        <button onClick={onNavigateHome} className="flex items-center space-x-3 group relative z-50 focus:outline-none">
-          <div className="relative w-10 h-10 flex items-center justify-center bg-white/10 rounded-full p-1 group-hover:bg-white/20 transition-colors shadow-lg shadow-blue-900/50">
-             <Flame size={20} fill="currentColor" className="text-white" />
-          </div>
-          <span className="font-bold text-xl tracking-widest uppercase text-white drop-shadow-md group-hover:text-blue-200 transition-colors">
-            FLAME
-          </span>
-        </button>
+<button onClick={onNavigateHome} className="flex items-center space-x-3 group relative z-50 focus:outline-none">
+  <img 
+    src="./flame.png" 
+    alt="FLAME Logo" 
+    className="h-10 w-auto object-contain"
+  />
+</button>
+
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center h-full space-x-1">

@@ -15,7 +15,7 @@ const getAssetPath = (path: string) => {
 // 1. Put image in 'public/images/filename.jpg'
 // 2. Change the line below to: getAssetPath("/images/filename.jpg")
 export const TOPIC_IMAGES = {
-  hero: getAssetPath("https://picsum.photos/seed/law/1920/1080"),
+  hero: getAssetPath("/homepage.png"),
   default: getAssetPath("https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2670&auto=format&fit=crop"),
   
   // Categories

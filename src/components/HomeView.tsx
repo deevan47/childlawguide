@@ -86,7 +86,7 @@ const HomeView: React.FC<HomeViewProps> = ({ onDive, onTopicSelect }) => {
                 Hey! I'm your friendly guide. <br/> Scroll down to explore!
              </div>
              <img 
-               src="https://api.dicebear.com/9.x/bottts-neutral/svg?seed=Felix&backgroundColor=transparent" 
+               src="./abc.png" 
                alt="Friendly Guide" 
                className="w-[250px] h-[250px] md:w-[450px] md:h-[450px] object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] transform hover:scale-105 transition-transform duration-500"
              />
@@ -129,7 +129,7 @@ const HomeView: React.FC<HomeViewProps> = ({ onDive, onTopicSelect }) => {
           >
             {/* REPLACE SRC WITH LOCAL: /spiderman.png */}
             <img 
-              src="https://api.dicebear.com/9.x/avataaars/svg?seed=Spidey&clothing=blazerAndShirt&eyes=happy" 
+              src="guide.png" 
               alt="Guide"
               className="w-32 h-32 md:w-48 md:h-48 drop-shadow-2xl animate-bounce-slow" 
             />
@@ -210,7 +210,7 @@ const HomeView: React.FC<HomeViewProps> = ({ onDive, onTopicSelect }) => {
       </section>
 
       <footer className="bg-black text-white py-6 text-center text-sm z-10">
-         <p>© 2024 FLAME. All Rights Reserved. Education for Protection.</p>
+         <p>© 2025 FLAME. All Rights Reserved. Education for Protection.</p>
       </footer>
     </div>
   );
