@@ -2,36 +2,14 @@ import React from 'react';
 import ContentView from '../../components/ContentView';
 import { TOPIC_CONTENT } from '../../constants';
 
-type Props = { onBack: () => void; onHome: () => void };
-
-const CcwlPolicePage: React.FC<Props> = ({ onBack, onHome }) => {
-  const data = {
-    id: 'ccwl/police-officers',
-    title: 'Police Officers',
-    subtitle: 'Children in Conflict with the Law',
-    category: 'CCWL',
-    description: 'Police officers, particularly those in Special Juvenile Police Units (SJPUs) and designated Child Welfare Police Officers (CWPOs), have a distinct set of duties for a Child in Conflict with Law (CCL) under the Juvenile Justice Act. Their primary mandate is to ensure the CCL is treated with dignity and protected from the adult criminal system. This involves immediately apprehending the child in civilian clothes, avoiding police lock-ups or jails, and ensuring the child is taken before the Juvenile Justice Board (JJB) within 24 hours. They must also inform the child\'s parents/guardians and facilitate the child\'s right to bail, working closely with the JJB and Probation Officers to ensure a non-punitive, child-friendly legal process focused on rehabilitation.',
-    image: '/images/police-officer.png',
-    sections: [
-      {
-        title: 'Investigating Officer (IO)',
-      },
-      {
-        title: 'Standard Operating Procedure',
-      },
-      {
-        title: 'Juvenile Treatment Guidelines',
-      },
-      {
-        title: 'Child Welfare Police Officer',
-      },
-      {
-        title: 'Collaboration',
-      },
-    ],
-  };
-
-  return <ContentView data={data} onBack={onBack} onHome={onHome} />;
+const CcwlPolicePage: React.FC<{ onBack: () => void; onHome: () => void }> = ({ onBack, onHome }) => {
+  const data = { ...TOPIC_CONTENT['ccl-police'], subtitle: 'Children in Need of Care and Protection' };
+  return (
+    <ContentView data={data} onBack={onBack} onHome={onHome}>
+      <p>Police designated for CCL cases must never use handcuffs. They must record information in the General Diary, not an FIR (for petty offenses).</p>
+      <h3 className="text-xl font-bold text-white mt-6 mb-2">Apprehension</h3>
+      <p>Upon apprehension, the police must inform the parents and the Probation Officer immediately.</p>
+    </ContentView>
+  );
 };
-
 export default CcwlPolicePage;

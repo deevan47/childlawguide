@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
 import { MAP_NODES, ExtendedNodePosition } from "../constants";
-import webBackground from "/web.jpeg";
+import webBackground from "../assets/images/web.jpeg";
 
 interface WebMapViewProps {
   onTopicSelect: (id: string, x?: number, y?: number) => void;
@@ -155,10 +155,6 @@ const WebMapView: React.FC<WebMapViewProps> = ({
       }`}
       style={{ backgroundImage: `url(${webBackground})` }}
     >
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-      `}</style>
-
       <div className="absolute top-0 w-full h-20 z-50 flex items-center justify-between px-8 bg-gradient-to-b from-white via-white/80 to-transparent">
         <button
           onClick={onBack}
@@ -208,9 +204,7 @@ const WebMapView: React.FC<WebMapViewProps> = ({
         viewBox="0 0 160 100"
         preserveAspectRatio="xMidYMid meet"
       >
-        <g className="transition-all duration-300 ease-out">
-          {renderConnections()}
-        </g>
+        <g className="transition-all duration-300 ease-out">{renderConnections()}</g>
         <g className="transition-all duration-300 ease-out">{renderNodes()}</g>
       </svg>
     </div>

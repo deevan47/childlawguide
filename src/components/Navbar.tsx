@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Menu, X, ChevronDown, ChevronRight, Flame } from 'lucide-react';
 import { NAVIGATION_ITEMS } from '../constants';
+import flameLogo from '../assets/images/flame.png';
+
 
 interface NavbarProps {
   onNavigateHome: () => void;
@@ -36,11 +38,12 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigateHome, onNavigateTopic }) => {
         
 <button onClick={onNavigateHome} className="flex items-center space-x-3 group relative z-50 focus:outline-none">
   <img 
-    src="./flame.png" 
+    src={flameLogo} 
     alt="FLAME Logo" 
     className="h-20 w-auto object-contain"
   />
 </button>
+
 
 
         {/* Desktop Menu */}
