@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
 import { MAP_NODES, ExtendedNodePosition } from "../constants";
-import webBackground from "../../public/web.jpeg";
+import webBackground from "/web.jpeg";
 
 interface WebMapViewProps {
   onTopicSelect: (id: string, x?: number, y?: number) => void;
