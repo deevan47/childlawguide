@@ -1,242 +1,151 @@
-import { NavItem, TopicData, NodePosition } from './types';
+import { NavItem, TopicData, ExtendedNodePosition } from './types';
 
-// --- GITHUB PAGES CONFIGURATION ---
-// Set to your specific repo name
-const REPO_BASE_PATH = '/childlawguide'; 
-
-// Helper to handle local vs deployment assets
-const getAssetPath = (path: string) => {
-  if (path.startsWith('http')) return path; 
-  return `${REPO_BASE_PATH}${path}`;
+// --- ASSETS ---
+// These point to files in your /public folder
+export const ASSETS = {
+  bgCommon: '/web.jpeg',
+  hero: '/homepage.png',
+  guide: '/guide.png',
+  boy: '/boy.png',
+  girl: '/girl.png',
+  flame: '/flame.png',
+  // External fallback for police background if specific one isn't in public
+  policeBg: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2670&auto=format&fit=crop',
 };
 
-// --- CONFIGURABLE IMAGES ---
-// TO USE LOCAL IMAGES:
-// 1. Put image in 'public/images/filename.jpg'
-// 2. Change the line below to: getAssetPath("/images/filename.jpg")
-export const TOPIC_IMAGES = {
-  hero: getAssetPath("/homepage.png"),
-  default: getAssetPath("https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2670&auto=format&fit=crop"),
+// --- CONTENT MAP ---
+export const TOPIC_CONTENT: Record<string, TopicData> = {
   
-  // Categories
-  catCare: getAssetPath("https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2670&auto=format&fit=crop"),
-  catConflict: getAssetPath("https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=2670&auto=format&fit=crop"),
-  catWelfare: getAssetPath("https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=2666&auto=format&fit=crop"),
-  
-  // Topics
-  childLabour: getAssetPath("https://images.unsplash.com/photo-1596464716127-f9a0859b4afd?q=80&w=2574&auto=format&fit=crop"),
-  childMarriage: getAssetPath("https://images.unsplash.com/photo-1515488042361-25f4602f0687?q=80&w=2574&auto=format&fit=crop"),
-  foundOnStreets: getAssetPath("https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?q=80&w=2670&auto=format&fit=crop"),
-  stakeholders: getAssetPath("https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=2574&auto=format&fit=crop"),
-  
-  // Stakeholders
-  cwc: getAssetPath("https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2670&auto=format&fit=crop"),
-  police: getAssetPath("https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2670&auto=format&fit=crop"),
-  dcpu: getAssetPath("https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2670&auto=format&fit=crop"),
-  socialWorker: getAssetPath("https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2669&auto=format&fit=crop"),
-  childrensHome: getAssetPath("https://images.unsplash.com/photo-1606092195730-5d7b9af1ef4d?q=80&w=2670&auto=format&fit=crop"),
+  // 1. POLICE OFFICERS (Specific Content)
+  'cncp-stk-police': { 
+    id: 'cncp-stk-police', 
+    title: 'Police Officers', 
+    subtitle: 'Children in Need of Care and Protection', 
+    category: 'Stakeholder', 
+    bgImage: ASSETS.policeBg, 
+    characterImage: ASSETS.boy, 
+    content: `
+      <p>
+        Police officers, particularly those in <strong>Special Juvenile Police Units (SJPUs)</strong> and <strong>Child Welfare Police Officers (CWPOs)</strong>, are essential for the protection of Children in Need of Care and Protection (CNCP) under the Juvenile Justice Act.
+      </p>
+      <br/>
+      <p>
+        Their key duties involve the immediate rescue and protection of vulnerable children, ensuring they are treated with dignity and in a child-friendly manner. They are mandated to provide immediate care and, most importantly, produce the child before the Child Welfare Committee (CWC) without delay to ensure they are swiftly connected to safety, support services, and long-term rehabilitation.
+      </p>
+    ` 
+  },
 
-  // Conflict with Law
-  jjb: getAssetPath("https://images.unsplash.com/photo-1589578527966-fdac0f44566c?q=80&w=2670&auto=format&fit=crop"),
-  parents: getAssetPath("https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=2670&auto=format&fit=crop"),
+  // 2. CHILD LABOUR
+  'cncp-labour': {
+    id: 'cncp-labour',
+    title: 'Child Labour',
+    subtitle: 'Children in Need of Care and Protection',
+    category: 'CNCP',
+    bgImage: ASSETS.bgCommon,
+    characterImage: ASSETS.guide,
+    content: `<p>Child labour refers to the exploitation of children through any form of work that deprives them of their childhood, interferes with their ability to attend regular school, and is mentally, physically, socially or morally harmful.</p>`
+  },
 
-  // Child Welfare
-  behavior: getAssetPath("https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?q=80&w=2646&auto=format&fit=crop"),
-  psychIssues: getAssetPath("https://images.unsplash.com/photo-1620242200388-12d832454dbd?q=80&w=2670&auto=format&fit=crop"),
-  rights: getAssetPath("https://images.unsplash.com/photo-1473649085228-583485e6e4d7?q=80&w=2666&auto=format&fit=crop"),
-  pocso: getAssetPath("https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=2670&auto=format&fit=crop"),
+  // 3. CHILD MARRIAGE
+  'cncp-marriage': {
+    id: 'cncp-marriage',
+    title: 'Child Marriage',
+    subtitle: 'Children in Need of Care and Protection',
+    bgImage: ASSETS.bgCommon,
+    characterImage: ASSETS.guide,
+    content: `<p>Child marriage is a violation of human rights. The Prohibition of Child Marriage Act creates mechanisms to prevent such marriages and protect victims.</p>`
+  },
+
+  // ... Add other IDs here as needed following the pattern ...
+
+  // FALLBACK
+  'default': { 
+    id: 'default', 
+    title: 'Details', 
+    subtitle: 'Info', 
+    bgImage: ASSETS.bgCommon, 
+    characterImage: ASSETS.guide,
+    content: '<p>Content is currently being updated for this topic.</p>' 
+  }
 };
 
+// --- NAVIGATION ITEMS ---
 export const NAVIGATION_ITEMS: NavItem[] = [
   {
     label: "Children in Need of Care and Protection",
-    href: "cat-care",
+    href: "cat-cncp",
     subItems: [
-      { label: "Child Labour", href: "child-labour" },
-      { label: "Child Marriage", href: "child-marriage" },
-      { label: "Children Found on the Streets", href: "found-on-streets" },
+      { label: "Child Labour", href: "cncp-labour" },
+      { label: "Child Marriage", href: "cncp-marriage" },
+      { label: "Children In Street Situations", href: "cncp-streets" },
+      { label: "Children Found Begging", href: "cncp-begging" },
+      { label: "Missing / Runaway Children", href: "cncp-missing" },
+      { label: "Orphans", href: "cncp-orphans" },
+      { label: "Children Found in Prostitution", href: "cncp-prostitution" },
       {
         label: "Stakeholders",
-        href: "stakeholders",
+        href: "cncp-stakeholders",
         subItems: [
-          { label: "CWC", href: "cwc" },
-          { label: "Police Officers", href: "police-care" },
-          { label: "DCPU", href: "dcpu" },
-          { label: "Social Worker", href: "social-worker-care" },
-          { label: "Children’s Home", href: "childrens-home-care" },
+          { label: "CWC", href: "cncp-stk-cwc" },
+          { label: "Police Officers", href: "cncp-stk-police" },
+          { label: "DCPU", href: "cncp-stk-dcpu" },
+          { label: "Govt Social Workers", href: "cncp-stk-govsw" },
+          { label: "NGOs", href: "cncp-stk-ngos" },
+          { label: "Homes for Children", href: "cncp-stk-homes" },
+          { label: "Parents", href: "cncp-stk-parents" }
         ]
       }
     ]
   },
   {
     label: "Children in Conflict with Law",
-    href: "cat-conflict",
+    href: "cat-ccl",
     subItems: [
-      { label: "JJB Members", href: "jjb" },
-      { label: "Police Officers", href: "police-conflict" },
-      { label: "Child Welfare Officer", href: "cwo" },
-      { label: "Social Worker", href: "social-worker-conflict" },
-      { label: "Children’s Home", href: "childrens-home-conflict" },
-      { label: "Parents", href: "parents" },
+      { label: "JJB Members", href: "ccl-jjb" },
+      { label: "Police Officers", href: "ccl-police" },
+      { label: "Child Welfare Officer", href: "ccl-cwo" },
+      { label: "Govt Social Workers", href: "ccl-govsw" },
+      { label: "NGOs", href: "ccl-ngos" },
+      { label: "Homes for Children", href: "ccl-homes" },
+      { label: "Parents", href: "ccl-parents" }
     ]
   },
-  {
-    label: "Child Welfare",
-    href: "cat-welfare",
-    subItems: [
-      { label: "Children presenting Obnoxious Behaviour", href: "behavior" },
-      { label: "Children with Physio-psychological Issues", href: "issues" },
-      { label: "Child Rights", href: "rights" },
-      { label: "POCSO Act", href: "pocso" },
-    ]
-  },
-  { label: "Resources", href: "cat-resources" }
+  { label: "Child Rights", href: "cat-rights" },
+  { label: "POCSO Act", href: "cat-pocso" }
 ];
 
-// --- WEB MAP LAYOUT ---
-// ViewBox: 0 0 160 100
-// Center: 80, 50
+// --- WEB MAP NODES ---
 export interface ExtendedNodePosition extends NodePosition {
   color?: 'blue' | 'red' | 'black';
+  parentId?: string;
 }
 
 export const MAP_NODES: ExtendedNodePosition[] = [
-  // --- CENTER (Root) ---
-  { id: 'root', x: 80, y: 50, level: 0, label: 'The Juvenile Justice Act', color: 'black' },
-  
-  // ==========================================
-  // CLUSTER 1: Need of Care (Left/Top-Left)
-  // ==========================================
-  { id: 'cat-care', x: 40, y: 40, level: 1, label: 'Need of Care', parentId: 'root', color: 'blue' },
-      
-      // Direct Topics
-      { id: 'child-labour', x: 10, y: 30, level: 2, label: 'Child Labour', parentId: 'cat-care', color: 'red' }, 
-      { id: 'child-marriage', x: 10, y: 45, level: 2, label: 'Child Marriage', parentId: 'cat-care', color: 'red' }, 
-      { id: 'found-on-streets', x: 15, y: 60, level: 2, label: 'Streets', parentId: 'cat-care', color: 'red' }, 
-
-      // Stakeholders Branch (Level 2)
-      { id: 'stakeholders', x: 40, y: 20, level: 2, label: 'Stakeholders', parentId: 'cat-care', color: 'blue' }, 
-          // Stakeholders Children (Level 3 - Fanning above)
-          { id: 'cwc', x: 25, y: 10, level: 3, label: 'CWC', parentId: 'stakeholders', color: 'red' },
-          { id: 'police-care', x: 35, y: 5, level: 3, label: 'Police', parentId: 'stakeholders', color: 'red' },
-          { id: 'dcpu', x: 45, y: 5, level: 3, label: 'DCPU', parentId: 'stakeholders', color: 'red' },
-          { id: 'social-worker-care', x: 55, y: 10, level: 3, label: 'Social Worker', parentId: 'stakeholders', color: 'red' },
-          { id: 'childrens-home-care', x: 60, y: 20, level: 3, label: "Home", parentId: 'stakeholders', color: 'red' },
-
-  // ==========================================
-  // CLUSTER 2: Conflict with Law (Right)
-  // ==========================================
-  { id: 'cat-conflict', x: 120, y: 50, level: 1, label: 'Conflict w/ Law', parentId: 'root', color: 'blue' },
-      
-      // Topics
-      { id: 'jjb', x: 110, y: 30, level: 2, label: 'JJ Board', parentId: 'cat-conflict', color: 'red' },
-      { id: 'police-conflict', x: 130, y: 30, level: 2, label: 'Police', parentId: 'cat-conflict', color: 'red' },
-      { id: 'cwo', x: 140, y: 40, level: 2, label: 'CWO', parentId: 'cat-conflict', color: 'red' },
-      { id: 'social-worker-conflict', x: 145, y: 55, level: 2, label: 'Social Worker', parentId: 'cat-conflict', color: 'red' },
-      { id: 'childrens-home-conflict', x: 135, y: 70, level: 2, label: "Home", parentId: 'cat-conflict', color: 'red' },
-      { id: 'parents', x: 115, y: 65, level: 2, label: 'Parents', parentId: 'cat-conflict', color: 'red' },
-
-  // ==========================================
-  // CLUSTER 3: Child Welfare (Bottom Left)
-  // ==========================================
-  { id: 'cat-welfare', x: 50, y: 80, level: 1, label: 'Child Welfare', parentId: 'root', color: 'blue' },
-      
-      { id: 'behavior', x: 30, y: 90, level: 2, label: 'Obnoxious Behav', parentId: 'cat-welfare', color: 'red' },
-      { id: 'issues', x: 45, y: 95, level: 2, label: 'Physio-Psych', parentId: 'cat-welfare', color: 'red' },
-      { id: 'rights', x: 60, y: 95, level: 2, label: 'Child Rights', parentId: 'cat-welfare', color: 'red' },
-      { id: 'pocso', x: 70, y: 85, level: 2, label: 'POCSO Act', parentId: 'cat-welfare', color: 'red' },
-
-  // ==========================================
-  // CLUSTER 4: Resources (Bottom Right)
-  // ==========================================
-  { id: 'cat-resources', x: 100, y: 80, level: 1, label: 'Resources', parentId: 'root', color: 'blue' },
+  { id: 'root', x: 80, y: 50, level: 0, label: 'CHILD WELFARE SYSTEM', color: 'black' },
+  { id: 'cat-rights', x: 80, y: 15, level: 1, label: 'CHILD RIGHTS', parentId: 'root', color: 'blue' },
+  { id: 'cat-pocso', x: 90, y: 85, level: 1, label: 'POCSO ACT', parentId: 'root', color: 'blue' },
+  { id: 'cat-cncp', x: 38, y: 40, level: 1, label: 'NEED OF CARE (CNCP)', parentId: 'root', color: 'blue' },
+      { id: 'cncp-stakeholders', x: 28, y: 28, level: 2, label: 'STAKEHOLDERS', parentId: 'cat-cncp', color: 'blue' },
+          { id: 'cncp-stk-cwc', x: 10, y: 20, level: 3, label: 'CWC', parentId: 'cncp-stakeholders', color: 'red' },
+          { id: 'cncp-stk-police', x: 20, y: 12, level: 3, label: 'Police', parentId: 'cncp-stakeholders', color: 'red' },
+          { id: 'cncp-stk-dcpu', x: 35, y: 10, level: 3, label: 'DCPU', parentId: 'cncp-stakeholders', color: 'red' },
+          { id: 'cncp-stk-govsw', x: 50, y: 15, level: 3, label: 'Govt SW', parentId: 'cncp-stakeholders', color: 'red' },
+          { id: 'cncp-stk-ngos', x: 55, y: 25, level: 3, label: 'NGOs', parentId: 'cncp-stakeholders', color: 'red' },
+          { id: 'cncp-stk-homes', x: 5, y: 30, level: 3, label: 'Homes', parentId: 'cncp-stakeholders', color: 'red' },
+          { id: 'cncp-stk-parents', x: 15, y: 40, level: 3, label: 'Parents', parentId: 'cncp-stakeholders', color: 'red' },
+      { id: 'cncp-labour', x: 15, y: 55, level: 2, label: 'Child Labour', parentId: 'cat-cncp', color: 'red' },
+      { id: 'cncp-marriage', x: 10, y: 65, level: 2, label: 'Child Marriage', parentId: 'cat-cncp', color: 'red' },
+      { id: 'cncp-streets', x: 15, y: 75, level: 2, label: 'Street Situations', parentId: 'cat-cncp', color: 'red' },
+      { id: 'cncp-begging', x: 25, y: 82, level: 2, label: 'Found Begging', parentId: 'cat-cncp', color: 'red' },
+      { id: 'cncp-missing', x: 38, y: 88, level: 2, label: 'Missing/Runaway', parentId: 'cat-cncp', color: 'red' },
+      { id: 'cncp-orphans', x: 50, y: 82, level: 2, label: 'Orphans', parentId: 'cat-cncp', color: 'red' },
+      { id: 'cncp-prostitution', x: 58, y: 72, level: 2, label: 'In Prostitution', parentId: 'cat-cncp', color: 'red' },
+  { id: 'cat-ccl', x: 120, y: 40, level: 1, label: 'CONFLICT w/ LAW (CCL)', parentId: 'root', color: 'blue' },
+      { id: 'ccl-jjb', x: 120, y: 25, level: 2, label: 'JJB Members', parentId: 'cat-ccl', color: 'red' },
+      { id: 'ccl-police', x: 135, y: 30, level: 2, label: 'Police Officers', parentId: 'cat-ccl', color: 'red' },
+      { id: 'ccl-cwo', x: 148, y: 40, level: 2, label: 'Welfare Officer', parentId: 'cat-ccl', color: 'red' },
+      { id: 'ccl-govsw', x: 155, y: 55, level: 2, label: 'Social Worker', parentId: 'cat-ccl', color: 'red' },
+      { id: 'ccl-ngos', x: 150, y: 70, level: 2, label: 'NGOs', parentId: 'cat-ccl', color: 'red' },
+      { id: 'ccl-homes', x: 135, y: 80, level: 2, label: 'Observation Home', parentId: 'cat-ccl', color: 'red' },
+      { id: 'ccl-parents', x: 120, y: 85, level: 2, label: 'Parents', parentId: 'cat-ccl', color: 'red' },
 ];
-
-export const TOPIC_CONTENT: Record<string, TopicData> = {
-  'root': {
-    id: 'root', title: 'The Juvenile Justice Act', subtitle: 'THE ACT', description: 'Central Legislation for Children.', category: 'Root', image: TOPIC_IMAGES.hero, content: '<p class="text-xl">Select a category to begin.</p>'
-  },
-  
-  // --- LEVEL 1 CATEGORIES ---
-  'cat-care': {
-    id: 'cat-care', title: 'Children in Need of Care and Protection', subtitle: 'CNCP', description: 'Children who are vulnerable and need state support.', category: 'Need of Care', image: TOPIC_IMAGES.catCare, content: '<p class="text-xl">Includes abandoned, surrendered, and abused children.</p>'
-  },
-  'cat-conflict': {
-    id: 'cat-conflict', title: 'Children in Conflict with Law', subtitle: 'CCL', description: 'Children alleged to have committed an offence.', category: 'Conflict with Law', image: TOPIC_IMAGES.catConflict, content: '<p class="text-xl">Focus is on rehabilitation, not punishment.</p>'
-  },
-  'cat-welfare': {
-    id: 'cat-welfare', title: 'Child Welfare', subtitle: 'WELLBEING', description: 'General welfare and rights of children.', category: 'Child Welfare', image: TOPIC_IMAGES.catWelfare, content: '<p class="text-xl">Ensuring holistic development.</p>'
-  },
-  'cat-resources': {
-    id: 'cat-resources', title: 'Resources', subtitle: 'HELP', description: 'Important contacts and documents.', category: 'Resources', image: TOPIC_IMAGES.default, content: '<p class="text-xl">Helpline 1098. Download SOPs and Forms.</p>'
-  },
-
-  // --- 1. CARE TOPICS ---
-  'child-labour': {
-    id: 'child-labour', title: 'Child Labour', subtitle: 'EXPLOITATION', description: 'Employment of children in any work that deprives them of their childhood.', category: 'Need of Care', image: TOPIC_IMAGES.childLabour, content: '<p class="text-xl">Prohibited under Child Labour (Prohibition and Regulation) Act.</p>'
-  },
-  'child-marriage': {
-    id: 'child-marriage', title: 'Child Marriage', subtitle: 'PREVENTION', description: 'Prohibition of Child Marriage Act.', category: 'Need of Care', image: TOPIC_IMAGES.childMarriage, content: '<p class="text-xl">Protecting children from early marriage.</p>'
-  },
-  'found-on-streets': {
-    id: 'found-on-streets', title: 'Children Found on the Streets', subtitle: 'VULNERABLE', description: 'Street connected children requiring immediate care.', category: 'Need of Care', image: TOPIC_IMAGES.foundOnStreets, content: '<p class="text-xl">Rehabilitation and shelter processes.</p>'
-  },
-  
-  // 1.4 STAKEHOLDERS & SUB TOPICS
-  'stakeholders': {
-    id: 'stakeholders', title: 'Stakeholders', subtitle: 'AUTHORITIES', description: 'Key people involved in the process for CNCP.', category: 'Need of Care', image: TOPIC_IMAGES.stakeholders, content: '<p class="text-xl">Who to approach for help.</p>'
-  },
-    'cwc': {
-      id: 'cwc', title: 'Child Welfare Committee', subtitle: 'AUTHORITY', description: 'Primary authority for CNCP cases.', category: 'Need of Care', image: TOPIC_IMAGES.cwc, content: '<p class="text-xl">CWC has powers of a Magistrate. It is the final authority for disposal of cases for care, protection, treatment, development and rehabilitation of children in need of care and protection.</p>'
-    },
-    'police-care': {
-      id: 'police-care', title: 'Police Officers', subtitle: 'PROTECTION', description: 'Police role in rescuing children.', category: 'Need of Care', image: TOPIC_IMAGES.police, content: '<p class="text-xl">First responders in many cases. The Special Juvenile Police Unit (SJPU) handles these cases with sensitivity.</p>'
-    },
-    'dcpu': {
-      id: 'dcpu', title: 'DCPU', subtitle: 'DISTRICT UNIT', description: 'District Child Protection Unit.', category: 'Need of Care', image: TOPIC_IMAGES.dcpu, content: '<p class="text-xl">Implementation of the JJ Act at district level. They coordinate all child rights and protection activities.</p>'
-    },
-    'social-worker-care': {
-      id: 'social-worker-care', title: 'Social Worker', subtitle: 'SUPPORT', description: 'Role of social workers in care cases.', category: 'Need of Care', image: TOPIC_IMAGES.socialWorker, content: '<p class="text-xl">They prepare Social Investigation Reports (SIR) and Individual Care Plans (ICP).</p>'
-    },
-    'childrens-home-care': {
-      id: 'childrens-home-care', title: "Children's Home", subtitle: 'INSTITUTION', description: 'Safe shelter for children in need of care.', category: 'Need of Care', image: TOPIC_IMAGES.childrensHome, content: '<p class="text-xl">Residential care and protection for children who have no family support.</p>'
-    },
-
-  // --- 2. CONFLICT TOPICS ---
-  'jjb': {
-    id: 'jjb', title: 'Juvenile Justice Board', subtitle: 'ADJUDICATION', description: 'Deciding cases for children in conflict with law.', category: 'Conflict with Law', image: TOPIC_IMAGES.jjb, content: '<p class="text-xl">The Board consists of a Principal Magistrate and two social workers.</p>'
-  },
-  'police-conflict': {
-    id: 'police-conflict', title: 'Police Officers', subtitle: 'SJPU', description: 'Role of police in Juvenile Justice.', category: 'Conflict with Law', image: TOPIC_IMAGES.police, content: '<p class="text-xl">Police must not wear uniform when dealing with children. A designated Child Welfare Police Officer (CWPO) is present in every station.</p>'
-  },
-  'cwo': {
-    id: 'cwo', title: 'Child Welfare Police Officer', subtitle: 'CWPO', description: 'Designated police officer in every station.', category: 'Conflict with Law', image: TOPIC_IMAGES.police, content: '<p class="text-xl">A CWPO is the first point of contact for a child in conflict with law.</p>'
-  },
-  'social-worker-conflict': {
-    id: 'social-worker-conflict', title: 'Social Worker', subtitle: 'REHABILITATION', description: 'Social workers assisting in legal conflict cases.', category: 'Conflict with Law', image: TOPIC_IMAGES.socialWorker, content: '<p class="text-xl">Assisting the JJB and families in understanding the legal process and ensuring the child\'s rights are protected.</p>'
-  },
-  'childrens-home-conflict': {
-    id: 'childrens-home-conflict', title: "Observation Home", subtitle: 'OBSERVATION', description: 'Homes for children in conflict with law.', category: 'Conflict with Law', image: TOPIC_IMAGES.childrensHome, content: '<p class="text-xl">Children are kept here during the pendency of inquiry. It is not a jail, but a place for reform.</p>'
-  },
-  'parents': {
-    id: 'parents', title: 'Parents', subtitle: 'GUARDIANS', description: 'Role of parents and guardians.', category: 'Conflict with Law', image: TOPIC_IMAGES.parents, content: '<p class="text-xl">Parents must be informed immediately upon apprehension. They play a crucial role in rehabilitation.</p>'
-  },
-
-  // --- 3. CHILD WELFARE TOPICS ---
-  'behavior': {
-    id: 'behavior', title: 'Children presenting Obnoxious Behaviour', subtitle: 'GUIDANCE', description: 'Managing difficult behavior in children.', category: 'Child Welfare', image: TOPIC_IMAGES.behavior, content: '<p class="text-xl">Counseling and reformative approaches rather than punitive measures.</p>'
-  },
-  'issues': {
-    id: 'issues', title: 'Children with Physio-psychological Issues', subtitle: 'HEALTH', description: 'Addressing mental and physical health.', category: 'Child Welfare', image: TOPIC_IMAGES.psychIssues, content: '<p class="text-xl">Support systems for special needs and psychological counselling.</p>'
-  },
-  'rights': {
-    id: 'rights', title: 'Child Rights', subtitle: 'UNCRC', description: 'Survival, Protection, Development, Participation.', category: 'Child Welfare', image: TOPIC_IMAGES.rights, content: '<p class="text-xl">Fundamental rights guaranteed to every child under the Constitution and UNCRC.</p>'
-  },
-  'pocso': {
-    id: 'pocso', title: 'POCSO Act', subtitle: 'SAFETY', description: 'Protection of Children from Sexual Offences.', category: 'Child Welfare', image: TOPIC_IMAGES.pocso, content: '<p class="text-xl">Stringent legal provisions for sexual abuse against children.</p>'
-  },
-
-  'default': {
-    id: 'default', title: 'Topic Details', subtitle: 'INFO', description: 'Information pending.', category: 'Resources', image: TOPIC_IMAGES.default, content: '<p class="text-xl">Content coming soon.</p>'
-  }
-};

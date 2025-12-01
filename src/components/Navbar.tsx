@@ -18,6 +18,16 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigateHome, onNavigateTopic }) => {
     }
   };
 
+  const navigate = (id?: string) => {
+    if (!id) {
+      window.location.hash = '';
+      onNavigateHome();
+      return;
+    }
+    window.location.hash = id;
+    onNavigateTopic(id);
+  };
+
   return (
     <nav
       className="fixed top-0 left-0 right-0 z-[9999] bg-[#1e3a8a] text-white border-b border-blue-900 shadow-2xl font-sans"
@@ -28,7 +38,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigateHome, onNavigateTopic }) => {
   <img 
     src="./flame.png" 
     alt="FLAME Logo" 
-    className="h-10 w-auto object-contain"
+    className="h-20 w-auto object-contain"
   />
 </button>
 

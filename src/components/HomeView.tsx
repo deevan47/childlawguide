@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
-import { TOPIC_IMAGES } from '../constants';
+import { ASSETS } from '../constants';
 
 interface HomeViewProps {
   onDive: () => void;
@@ -9,16 +9,16 @@ interface HomeViewProps {
 
 const HomeView: React.FC<HomeViewProps> = ({ onDive, onTopicSelect }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const [showFixedGuide, setShowFixedGuide] = useState(false);
 
-  // Handle scroll animation for Spiderman
+  // Handle scroll animation to toggle the fixed guide
   useEffect(() => {
     const handleScroll = () => {
       if (scrollContainerRef.current) {
         const { scrollTop, clientHeight } = scrollContainerRef.current;
-        // We only care about scrolling past the first screen (Hero)
-        const progress = Math.min(scrollTop / clientHeight, 2); 
-        setScrollProgress(progress);
+        // Show guide once we scroll 80% past the hero section
+        const shouldShow = scrollTop > clientHeight * 0.8;
+        setShowFixedGuide(shouldShow);
       }
     };
 
@@ -55,7 +55,7 @@ const HomeView: React.FC<HomeViewProps> = ({ onDive, onTopicSelect }) => {
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
-            src={TOPIC_IMAGES.hero}
+            src={ASSETS.hero}
             alt="Background" 
             className="w-full h-full object-cover"
           />
@@ -65,7 +65,7 @@ const HomeView: React.FC<HomeViewProps> = ({ onDive, onTopicSelect }) => {
         <div className="container mx-auto px-6 z-10 grid lg:grid-cols-2 gap-12 h-full items-center relative">
           
           {/* Left: Typography */}
-          <div className="text-white space-y-2 flex flex-col justify-center animate-fade-in-up text-center lg:text-left">
+          <div className="text-white space-y-2 flex flex-col justify-center animate-fade-in-up text-center lg:text-left h-full pb-20 lg:pb-0">
             <h3 className="text-sm md:text-base font-bold tracking-[0.2em] uppercase text-gray-300 mb-2">
               One Stop Guide on How to Deal with
             </h3>
@@ -80,20 +80,34 @@ const HomeView: React.FC<HomeViewProps> = ({ onDive, onTopicSelect }) => {
             </h2>
           </div>
 
-          {/* Right: 3D Character (Hero Version) */}
-          <div className="relative h-full flex items-center justify-center lg:justify-end">
-             <div className="absolute top-1/4 right-0 lg:right-20 animate-bounce-slow z-20 max-w-[200px] bg-white text-black p-4 rounded-2xl rounded-bl-none shadow-lg text-sm font-semibold hidden md:block">
-                Hey! I'm your friendly guide. <br/> Scroll down to explore!
+          {/* Right: Duo Characters (Boy & Girl Side by Side) */}
+          <div className="relative h-full flex items-end justify-center lg:justify-end pb-0">
+             {/* Increased negative space to bring them closer */}
+             <div className="relative flex items-end -space-x-12 md:-space-x-24 translate-y-4 lg:translate-y-0">
+                
+                {/* Dialogue Box */}
+                <div className="absolute -top-40 left-1/2 -translate-x-1/2 animate-bounce-slow z-30 w-48 bg-white text-black p-4 rounded-2xl rounded-bl-none shadow-xl text-sm font-semibold text-center hidden md:block border border-gray-200">
+                   Hey! We are your friendly guides. <br/> Scroll down to explore!
+                </div>
+
+                {/* Girl Image */}
+                <img 
+                  src={ASSETS.girl} 
+                  alt="Girl Guide" 
+                  className="w-[160px] md:w-[320px] object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform hover:scale-105 transition-transform duration-500 z-10"
+                />
+
+                {/* Boy Image */}
+                <img 
+                  src={ASSETS.boy} 
+                  alt="Boy Guide" 
+                  className="w-[170px] md:w-[340px] object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] transform hover:scale-105 transition-transform duration-500 z-20"
+                />
              </div>
-             <img 
-               src="./abc.png" 
-               alt="Friendly Guide" 
-               className="w-[250px] h-[250px] md:w-[450px] md:h-[450px] object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] transform hover:scale-105 transition-transform duration-500"
-             />
           </div>
 
           {/* Dive Button */}
-          <div className="absolute bottom-20 lg:bottom-24 w-full flex justify-center left-0">
+          <div className="absolute bottom-10 lg:bottom-16 w-full flex justify-center left-0 z-40">
              <button 
               onClick={onDive}
               className="group bg-black text-white px-10 py-5 rounded-full font-bold text-lg flex items-center space-x-3 hover:scale-110 transition-transform duration-300 border border-gray-700 shadow-[0_0_30px_rgba(59,130,246,0.3)] hover:shadow-blue-500/50"
@@ -101,11 +115,6 @@ const HomeView: React.FC<HomeViewProps> = ({ onDive, onTopicSelect }) => {
               <span>Dive into the Web</span>
               <ArrowRight className="group-hover:translate-x-1 transition-transform" />
             </button>
-          </div>
-          
-          {/* Scroll Indicator */}
-          <div className="absolute bottom-4 left-0 right-0 text-center text-white/50 text-sm animate-bounce">
-             Scroll Down
           </div>
         </div>
       </section>
@@ -115,24 +124,20 @@ const HomeView: React.FC<HomeViewProps> = ({ onDive, onTopicSelect }) => {
         className="relative w-full min-h-screen bg-[#9f1e22] text-white pt-20 pb-32"
         style={{ backgroundImage: `radial-gradient(circle at 50% 50%, #b92b2b 0%, #9f1e22 100%)` }}
       >
-          {/* --- ANIMATED CHARACTER (Spiderman) --- */}
-          {/* Only visible when scrolled past hero (approx scrollProgress > 0.5) */}
+          {/* --- FIXED GUIDE CHARACTER --- */}
           <div 
-            className="fixed z-40 transition-transform duration-100 ease-out pointer-events-none hidden lg:block"
-            style={{
-              top: '150px',
-              left: '50px',
-              opacity: scrollProgress > 0.2 ? 1 : 0,
-              // Parallax movement based on scroll
-              transform: `translateY(${(scrollProgress - 1) * 300}px)`
-            }}
+            className={`fixed top-20 left-10 z-40 transition-all duration-700 ease-out hidden lg:block ${
+              showFixedGuide ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
           >
-            {/* REPLACE SRC WITH LOCAL: /spiderman.png */}
             <img 
-              src="guide.png" 
+              src={ASSETS.guide} 
               alt="Guide"
-              className="w-32 h-32 md:w-48 md:h-48 drop-shadow-2xl animate-bounce-slow" 
+              className="w-32 h-32 md:w-48 md:h-48 drop-shadow-2xl" 
             />
+            <div className="absolute top-100 -right-10 bg-white text-black text-xs font-bold p-3 rounded-xl rounded-tl-none shadow-lg w-32 animate-fade-in-up">
+               Click a button to learn more!
+            </div>
           </div>
 
           <div className="container mx-auto px-6 max-w-5xl flex flex-col gap-24 relative z-10">
@@ -151,12 +156,12 @@ const HomeView: React.FC<HomeViewProps> = ({ onDive, onTopicSelect }) => {
                   Following are the agencies responsible for CNCP:
                 </h3>
                 <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-                    <AgencyButton number="01" label="CWC" id="cwc" />
-                    <AgencyButton number="02" label="Police Officers" id="police-care" />
-                    <AgencyButton number="03" label="DCPU" id="dcpu" />
+                    <AgencyButton number="01" label="CWC" id="cncp-stk-cwc" />
+                    <AgencyButton number="02" label="Police Officers" id="cncp-stk-police" />
+                    <AgencyButton number="03" label="DCPU" id="cncp-stk-dcpu" />
                     <div className="w-full flex flex-wrap justify-center gap-4 md:gap-6">
-                      <AgencyButton number="04" label="Social Worker" id="social-worker-care" />
-                      <AgencyButton number="05" label="Children's Home" id="childrens-home-care" />
+                      <AgencyButton number="04" label="Social Worker" id="cncp-stk-govsw" />
+                      <AgencyButton number="05" label="Children's Home" id="cncp-stk-homes" />
                     </div>
                 </div>
               </div>
@@ -173,15 +178,15 @@ const HomeView: React.FC<HomeViewProps> = ({ onDive, onTopicSelect }) => {
                   A Child in Conflict the Law (CCL) refers to a child who has been found to have committed an offence and has not completed eighteen years of age at the date of commission of the offence.
                 </p>
                 <h3 className="text-lg md:text-xl font-bold uppercase tracking-widest mb-8 text-white/90">
-                  Following are the agencies responsible for CNCP:
+                  Following are the agencies responsible for CCL:
                 </h3>
                 <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-                    <AgencyButton number="01" label="JJB" id="jjb" />
-                    <AgencyButton number="02" label="Police Officers" id="police-conflict" />
-                    <AgencyButton number="03" label="Child Welfare Officer" id="cwo" />
+                    <AgencyButton number="01" label="JJB" id="ccl-jjb" />
+                    <AgencyButton number="02" label="Police Officers" id="ccl-police" />
+                    <AgencyButton number="03" label="Child Welfare Officer" id="ccl-cwo" />
                     <div className="w-full flex flex-wrap justify-center gap-4 md:gap-6">
-                      <AgencyButton number="04" label="Social Worker" id="social-worker-conflict" />
-                      <AgencyButton number="05" label="Children's Home" id="childrens-home-conflict" />
+                      <AgencyButton number="04" label="Social Worker" id="ccl-govsw" />
+                      <AgencyButton number="05" label="Children's Home" id="ccl-homes" />
                     </div>
                 </div>
               </div>
@@ -198,10 +203,11 @@ const HomeView: React.FC<HomeViewProps> = ({ onDive, onTopicSelect }) => {
                   Child Welfare ensures to provide necessary support to the children having physio-psychological issues and those presenting obnoxious behaviour as well. It aims to provide the parents of these children the right guidance and the agencies to approach.
                 </p>
                 <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-                    <AgencyButton number="01" label="Obnoxious Behaviour" id="behavior" />
-                    <AgencyButton number="02" label="Physio-Psych Issues" id="issues" />
-                    <AgencyButton number="03" label="Child Rights" id="rights" />
-                    <AgencyButton number="04" label="POCSO Act" id="pocso" />
+                    <AgencyButton number="01" label="Child Rights" id="cat-rights" />
+                    <AgencyButton number="02" label="POCSO Act" id="cat-pocso" />
+                    {/* These two don't have direct pages yet, mapped to CNCP/CCL general categories or you can create specific ones */}
+                    <AgencyButton number="03" label="Obnoxious Behaviour" id="cat-ccl" />
+                    <AgencyButton number="04" label="Physio-Psych Issues" id="cat-cncp" />
                 </div>
               </div>
             </div>

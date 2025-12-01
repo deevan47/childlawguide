@@ -1,92 +1,89 @@
 import React from 'react';
+import { ArrowLeft } from 'lucide-react';
 import { TopicData } from '../types';
-import { ArrowLeft, Home, ChevronRight } from 'lucide-react';
+import { ASSETS } from '../constants';
 
 interface ContentViewProps {
   data: TopicData;
-  onBack: () => void; // Now maps to 'Home' in App.tsx
+  onBack: () => void;
   onHome: () => void;
+  children?: React.ReactNode;
 }
 
-const ContentView: React.FC<ContentViewProps> = ({ data, onBack, onHome }) => {
+const ContentView: React.FC<ContentViewProps> = ({ data, onBack, children }) => {
+  const bg = data.bgImage || ASSETS.bgCommon;
+  const char = data.characterImage || ASSETS.guide;
+
   return (
-    <div className="min-h-screen bg-paper overflow-y-auto w-full relative pt-0 animate-fade-in">
-      
-      {/* 
-         FIXED NAVIGATION BUTTON 
-         Navigate directly to HOME as requested
-      */}
-      <button 
-        onClick={onBack}
-        className="fixed top-24 left-6 z-50 bg-white text-slate-900 px-6 py-3 rounded-full shadow-xl border border-slate-200 flex items-center gap-3 font-bold hover:bg-slate-50 hover:text-blue-600 transition-all hover:scale-105 active:scale-95 group"
-        aria-label="Return to Home"
-      >
-        <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" /> 
-        <span>Back to Home</span>
-      </button>
-
-      {/* Header Image */}
-      <div className="relative w-full h-[50vh] md:h-[60vh]">
-        <img 
-          src={data.image} 
-          alt={data.title}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-paper via-paper/20 to-black/30"></div>
+    <div className="relative w-full h-full bg-slate-900 text-white overflow-hidden font-poppins">
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+        .font-impact { font-family: 'Impact', sans-serif; }
         
-        {/* Title Overlay */}
-        <div className="absolute bottom-0 left-0 w-full p-6 md:p-12 text-center md:text-left">
-          <div className="container mx-auto max-w-4xl pt-10">
-             {/* Breadcrumb Visual */}
-            <div className="flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-accent mb-3 opacity-90 justify-center md:justify-start">
-               <span className="text-gray-600 bg-white/80 px-2 py-1 rounded">{data.category === 'Root' ? 'Home' : data.category}</span>
-               <ChevronRight size={14} className="text-gray-800" />
-               <span className="text-black bg-white/80 px-2 py-1 rounded shadow-sm">{data.title}</span>
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.4); }
+      `}</style>
+
+      {/* FIXED BACKGROUND */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <img src={bg} alt="Background" className="w-full h-full object-cover opacity-20 blur-sm" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/80 to-black/40" />
+      </div>
+
+      {/* BACK BUTTON - Fixed to ensure it never scrolls away or gets overlapped */}
+      <div className="absolute top-6 left-6 md:top-10 md:left-10 z-50">
+        <button 
+          onClick={onBack} 
+          className="group flex items-center gap-3 px-5 py-3 bg-black/40 hover:bg-white text-white hover:text-black rounded-full transition-all duration-300 backdrop-blur-md border border-white/10 hover:border-white shadow-2xl"
+        >
+          <ArrowLeft size={20} />
+          <span className="font-poppins font-medium text-sm tracking-wide">BACK</span>
+        </button>
+      </div>
+
+      {/* SPLIT LAYOUT */}
+      <div className="relative z-10 w-full h-full flex flex-col md:flex-row">
+        
+        {/* LEFT: CHARACTER (Fixed) */}
+        <div className="hidden md:flex md:w-5/12 h-full items-end justify-center relative pointer-events-none">
+           <img 
+             src={char} 
+             alt="Character" 
+             className="w-auto max-h-[85vh] object-contain drop-shadow-2xl animate-in slide-in-from-left duration-1000" 
+             style={{ filter: 'drop-shadow(0 0 50px rgba(0,0,0,0.6))' }} 
+           />
+        </div>
+
+        {/* RIGHT: CONTENT (Scrollable) */}
+        <div className="w-full md:w-7/12 h-full overflow-y-auto custom-scrollbar">
+          {/* Added extra top padding (pt-32 md:pt-40) to prevent content from overlapping the back button */}
+          <div className="min-h-full flex flex-col justify-center p-8 md:p-20 pt-32 md:pt-40">
+            <div className="max-w-3xl ml-auto md:mr-10">
+              
+              {/* TITLE (Impact Font) */}
+              <h1 className="font-impact text-6xl md:text-8xl text-white uppercase tracking-wide leading-[0.9] mb-4 drop-shadow-lg">
+                {data.title}
+              </h1>
+
+              {/* SUBTITLE (Poppins Font) */}
+              <h2 className="font-poppins text-xl md:text-2xl text-gray-400 font-light italic mb-10 pb-6 border-b border-gray-700">
+                {data.subtitle}
+              </h2>
+
+              {/* BODY CONTENT (Poppins Font) */}
+              <div className="font-poppins text-base md:text-lg text-gray-200 leading-8 font-light tracking-wide space-y-6">
+                {children ? children : <div dangerouslySetInnerHTML={{ __html: data.content }} />}
+              </div>
+              
+              <div className="h-32"></div>
             </div>
-
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-primary uppercase leading-tight drop-shadow-sm bg-white/40 backdrop-blur-sm inline-block px-4 rounded-lg">
-              {data.title}
-            </h1>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Content Area */}
-      <div className="container mx-auto px-6 py-8 md:py-12 max-w-4xl relative z-10 -mt-10">
-        
-        <div className="w-full bg-white p-8 md:p-16 rounded-3xl shadow-2xl border border-gray-100">
-          {/* Subtitle / Description Header */}
-          <div className="mb-10 pb-10 border-b border-gray-100">
-             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
-                <h2 className="text-sm font-bold text-blue-600 uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full mb-2 md:mb-0">
-                  {data.subtitle}
-                </h2>
-             </div>
-             <p className="text-2xl md:text-3xl text-slate-800 font-serif leading-relaxed italic">
-              {data.description}
-            </p>
-          </div>
-          
-          {/* Main HTML Content */}
-          <div className="prose prose-lg md:prose-xl max-w-none text-slate-600 font-sans leading-loose">
-            <div dangerouslySetInnerHTML={{ __html: data.content }} />
-          </div>
-
-          {/* Footer Actions */}
-          <div className="mt-16 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-center items-center gap-6">
-             <button onClick={onHome} className="px-8 py-3 bg-slate-900 text-white rounded-lg hover:bg-slate-800 font-bold uppercase tracking-wider flex items-center gap-2 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
-                <Home size={18} /> Go Home
-             </button>
           </div>
         </div>
 
       </div>
-      
-      {/* Simple Footer */}
-      <div className="bg-slate-900 text-slate-500 py-12 text-center text-xs mt-12">
-        <p>© 2024 FLAME - Juvenile Justice Educational Tool</p>
-      </div>
-
     </div>
   );
 };
