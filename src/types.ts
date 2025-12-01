@@ -23,6 +23,11 @@ export interface NodePosition {
   parentId?: string;
 }
 
+// --- ADDED THIS INTERFACE ---
+export interface ExtendedNodePosition extends NodePosition {
+  color: string;
+}
+
 export interface NavItem {
   label: string;
   href?: string;

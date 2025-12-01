@@ -20,7 +20,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     category: 'Stakeholder', 
     bgImage: ASSETS.policeBg, 
     characterImage: ASSETS.boy, 
-    content: `<p>Police officers, particularly those in Special Juvenile Police Units (SJPUs) and Child Welfare Police Officers (CWPOs), are.</p>` 
+    content: `<p>Police officers, particularly those in Special Juvenile Police Units (SJPUs) and Child Welfare Police Officers (CWPOs), play a crucial role in the child welfare system. They are often the first point of contact for children in distress.</p>` 
   },
 
   // 2. ISSUES
@@ -30,7 +30,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: 'Children in Need of Care & Protection',
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
-    content: `<p>Child labour deprives children of their childhood and is harmful to their physical and mental development.</p>`
+    content: `<p>Child labour deprives children of their childhood and is harmful to their physical and mental development. The Child and Adolescent Labour (Prohibition and Regulation) Act prohibits the engagement of children in all occupations and processes.</p>`
   },
 
   'cncp-marriage': {
@@ -39,7 +39,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: 'Children in Need of Care & Protection',
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
-    content: `<p>Child marriage is a violation of human rights. It compromises the development of girls and often results in early pregnancy and social isolation.</p>`
+    content: `<p>Child marriage is a violation of human rights. It compromises the development of girls and often results in early pregnancy and social isolation. The Prohibition of Child Marriage Act, 2006 makes it illegal to marry a girl under 18 and a boy under 21.</p>`
   },
   
   'cncp-streets': {
@@ -48,7 +48,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: 'Children Living on Streets',
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
-    content: `<p>Children living alone on the streets, or with parents who are unable to take care of them, require immediate care, protection, and rehabilitation by the state.</p>`
+    content: `<p>Children living alone on the streets, or with parents who are unable to take care of them, require immediate care, protection, and rehabilitation by the state. They are highly vulnerable to abuse and exploitation.</p>`
   },
 
   'cncp-begging': {
@@ -57,7 +57,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: 'Exploitation & Rehabilitation',
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
-    content: `<p>Forcing a child to beg is a crime. These children need to be rescued and presented before the CWC for rehabilitation, not punishment.</p>`
+    content: `<p>Forcing a child to beg is a crime. These children need to be rescued and presented before the CWC for rehabilitation, not punishment. Begging is often part of organized crime syndicates involving trafficking.</p>`
   },
 
   'cncp-missing': {
@@ -66,7 +66,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: 'Runaway & Trafficking Risks',
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
-    content: `<p>Children who have run away or are missing are highly vulnerable to trafficking and abuse. Police must register an FIR immediately upon reporting.</p>`
+    content: `<p>Children who have run away or are missing are highly vulnerable to trafficking and abuse. Police must register an FIR immediately upon reporting. The TrackChild portal helps in tracking missing children.</p>`
   },
 
   'cncp-orphans': {
@@ -75,7 +75,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: 'Institutional Care & Adoption',
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
-    content: `<p>Children without parents or guardians are the primary responsibility of the state to ensure they are placed in adoption or institutional care.</p>`
+    content: `<p>Children without parents or guardians are the primary responsibility of the state to ensure they are placed in adoption or institutional care. The CARA (Central Adoption Resource Authority) regulates adoption processes.</p>`
   },
 
   'cncp-prostitution': {
@@ -84,7 +84,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: 'Victims of Trafficking',
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
-    content: `<p>Children found in these situations are victims of sexual exploitation. They require sensitive rescue operations and long-term psychological support.</p>`
+    content: `<p>Children found in these situations are victims of sexual exploitation. They require sensitive rescue operations and long-term psychological support. They are treated as victims, not offenders.</p>`
   },
 
   'cncp-stk-cwc': {
@@ -93,7 +93,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: 'Child Welfare Committee',
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
-    content: `<p>The CWC is the primary authority for disposing of cases for the care, protection, treatment, development, and rehabilitation of children in need of care and protection.</p>`
+    content: `<p>The CWC is the primary authority for disposing of cases for the care, protection, treatment, development, and rehabilitation of children in need of care and protection. They have the powers of a Judicial Magistrate.</p>`
   },
 
   'cncp-stk-dcpu': {
@@ -102,7 +102,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: 'District Child Protection Unit',
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
-    content: `<p>The DCPU coordinates and implements all child rights and protection activities at the district level.</p>`
+    content: `<p>The DCPU coordinates and implements all child rights and protection activities at the district level. They identify families at risk and link them with government welfare schemes.</p>`
   },
 
   'cncp-stk-govsw': {
@@ -111,7 +111,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: 'Government Officials',
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
-    content: `<p>Social workers conduct inquiry reports, home studies, and follow-ups to assist the CWC in making informed decisions.</p>`
+    content: `<p>Social workers conduct inquiry reports, home studies, and follow-ups to assist the CWC in making informed decisions. They act as a bridge between the child, the family, and the legal system.</p>`
   },
 
   'cncp-stk-ngos': {
@@ -120,7 +120,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: 'Non-Governmental Orgs',
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
-    content: `<p>NGOs play a vital role in identifying vulnerable children, running shelter homes, and providing counseling services.</p>`
+    content: `<p>NGOs play a vital role in identifying vulnerable children, running shelter homes, and providing counseling services. They often work in partnership with the government to implement child protection schemes.</p>`
   },
 
   'cncp-stk-homes': {
@@ -129,7 +129,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: 'Child Care Institutions',
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
-    content: `<p>Includes Children's Homes, Shelter Homes, and Specialized Adoption Agencies designated to house children safely.</p>`
+    content: `<p>Includes Children's Homes, Shelter Homes, and Specialized Adoption Agencies designated to house children safely. These institutions must be registered under the JJ Act.</p>`
   },
 
   'cncp-stk-parents': {
@@ -138,7 +138,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: 'Role & Responsibility',
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
-    content: `<p>The role of parents is evaluated by the CWC. If parents are unfit or abusive, the child may be removed from their custody for safety.</p>`
+    content: `<p>The role of parents is evaluated by the CWC. If parents are unfit or abusive, the child may be removed from their custody for safety. Parents are also provided counseling to ensure a safe environment for the child.</p>`
   },
 
   'ccl-jjb': {
@@ -147,7 +147,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: 'Juvenile Justice Board',
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
-    content: `<p>The JJB consists of a Magistrate and social workers. They adjudicate cases involving children alleged to be in conflict with the law.</p>`
+    content: `<p>The JJB consists of a Magistrate and social workers. They adjudicate cases involving children alleged to be in conflict with the law. The focus is on reform and rehabilitation rather than punishment.</p>`
   },
 
   'ccl-police': {
@@ -156,7 +156,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: 'Handling CCL Cases',
     bgImage: ASSETS.policeBg,
     characterImage: ASSETS.boy,
-    content: `<p>Police must not treat CCLs like adult criminals. They must not be handcuffed or kept in regular jails. They must be handled by the SJPU.</p>`
+    content: `<p>Police must not treat CCLs like adult criminals. They must not be handcuffed or kept in regular jails. They must be handled by the SJPU in plain clothes.</p>`
   },
 
   'ccl-cwo': {
@@ -165,7 +165,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: 'Probation Support',
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
-    content: `<p>They prepare the Social Investigation Report (SIR) to help the JJB understand the background and circumstances of the alleged offense.</p>`
+    content: `<p>They prepare the Social Investigation Report (SIR) to help the JJB understand the background and circumstances of the alleged offense. This report is crucial for the final disposition of the case.</p>`
   },
 
   'ccl-govsw': {
@@ -174,7 +174,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: 'Legal Aid & Support',
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
-    content: `<p>Social workers provide counseling and ensure the child's rights are protected during the legal process.</p>`
+    content: `<p>Social workers provide counseling and ensure the child's rights are protected during the legal process. They assist the child in understanding the proceedings.</p>`
   },
 
   'ccl-ngos': {
@@ -183,7 +183,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: 'Rehabilitation Support',
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
-    content: `<p>NGOs provide legal aid, vocational training, and reformative services to help reintegrate the child into society.</p>`
+    content: `<p>NGOs provide legal aid, vocational training, and reformative services to help reintegrate the child into society. They also conduct awareness programs.</p>`
   },
 
   'ccl-homes': {
@@ -192,7 +192,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: 'Institutions for CCL',
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
-    content: `<p>Observation Homes are for the temporary stay of children during inquiry. Special Homes are for children found to have committed an offense.</p>`
+    content: `<p>Observation Homes are for the temporary stay of children during inquiry. Special Homes are for children found to have committed an offense and require long-term rehabilitation.</p>`
   },
 
   'ccl-parents': {
@@ -201,7 +201,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: 'Supervision Role',
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
-    content: `<p>Parents are involved in the counseling process and are responsible for the child's supervision if bail is granted.</p>`
+    content: `<p>Parents are involved in the counseling process and are responsible for the child's supervision if bail is granted. They play a key role in the child's reintegration.</p>`
   },
 
   'cat-rights': {
@@ -210,7 +210,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: 'Fundamental Rights',
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
-    content: `<p>Every child has the right to survival, protection, development, and participation.</p>`
+    content: `<p>Every child has the right to survival, protection, development, and participation. These rights are enshrined in the UNCRC and the Constitution of India.</p>`
   },
 
   'cat-pocso': {
@@ -219,7 +219,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: 'Sexual Offenses',
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
-    content: `<p>The Protection of Children from Sexual Offences (POCSO) Act provides a legal framework to protect children from sexual assault.</p>`
+    content: `<p>The Protection of Children from Sexual Offences (POCSO) Act provides a legal framework to protect children from sexual assault, sexual harassment, and pornography. It mandates child-friendly procedures.</p>`
   },
 
   // FALLBACK

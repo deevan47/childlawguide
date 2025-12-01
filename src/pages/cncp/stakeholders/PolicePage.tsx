@@ -19,7 +19,7 @@ const PolicePage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
     characterImage: guideImage,
     content: `
       <p>
-        Police officers.
+        Police officers, .
       </p>
       
     `,

@@ -1,7 +1,6 @@
-import React from 'react';
-import { ArrowLeft } from 'lucide-react';
-import { TopicData } from '../types';
-import { ASSETS } from '../constants';
+import React from "react";
+import { TopicData } from "../types";
+import { ASSETS } from "../constants";
 
 interface ContentViewProps {
   data: TopicData;
@@ -10,7 +9,11 @@ interface ContentViewProps {
   children?: React.ReactNode;
 }
 
-const ContentView: React.FC<ContentViewProps> = ({ data, onBack, children }) => {
+const ContentView: React.FC<ContentViewProps> = ({
+  data,
+  onBack,
+  children,
+}) => {
   const bg = data.bgImage || ASSETS.bgCommon;
   const char = data.characterImage || ASSETS.guide;
 
@@ -46,58 +49,43 @@ const ContentView: React.FC<ContentViewProps> = ({ data, onBack, children }) => 
 
       {/* SCROLLABLE CONTENT */}
       <div className="relative z-10 w-full h-full overflow-y-auto custom-scrollbar smooth-scroll">
-        
-        {/* BACK BUTTON */}
-        <div className="sticky top-6 left-6 z-50 px-6 pt-6 w-fit">
-          <button 
-            onClick={onBack} 
-            className="group flex items-center gap-3 px-5 py-2 bg-white/10 hover:bg-white text-white hover:text-black rounded-lg transition-all duration-300 backdrop-blur-md border border-white/20 shadow-xl"
-          >
-            <ArrowLeft size={24} />
-          </button>
-        </div>
-
         {/* HERO SECTION */}
         <div className="relative w-full min-h-[85vh] flex flex-col md:flex-row items-end justify-between w-full pb-16 pt-20">
-          
           {/* LEFT: Character Image (Anchored Bottom Left) */}
           <div className="w-full md:w-5/12 lg:w-1/3 flex justify-start items-end relative z-20 pl-4 md:pl-10 mb-8 md:-mb-8">
-             <img 
-               src={char} 
-               alt="Character" 
-               className="w-48 md:w-72 lg:w-[380px] object-contain drop-shadow-2xl animate-char"
-               style={{ filter: 'drop-shadow(0 0 50px rgba(0,0,0,0.9))' }}
-             />
+            <img
+              src={char}
+              alt="Character"
+              className="w-48 md:w-72 lg:w-[380px] object-contain drop-shadow-2xl animate-char"
+              style={{ filter: "drop-shadow(0 0 50px rgba(0,0,0,0.9))" }}
+            />
           </div>
 
           {/* RIGHT: Text Content */}
           <div className="w-full md:w-7/12 lg:w-2/3 flex flex-col items-center md:items-end text-center md:text-right space-y-8 z-10 pr-6 md:pr-16 lg:pr-24">
-            
             {/* Title & Subtitle */}
             <div className="flex flex-col items-center md:items-end space-y-4">
               <h1 className="font-impact text-6xl md:text-8xl lg:text-9xl text-white uppercase tracking-wider drop-shadow-2xl leading-[0.9]">
                 {data.title}
               </h1>
-              
+
               <h2 className="font-poppins text-xl md:text-3xl text-blue-200 italic font-light tracking-wide border-b border-gray-500/50 pb-4 inline-block drop-shadow-md">
                 {data.subtitle}
               </h2>
             </div>
 
             {/* DESCRIPTION TEXT - Huge, Spacious, Right Aligned */}
-            <div 
+            <div
               className="font-poppins text-lg md:text-xl lg:text-2xl text-gray-5 leading-[1.8] font-light tracking-wide drop-shadow-lg mt-6 max-w-4xl"
               dangerouslySetInnerHTML={{ __html: data.content }}
             />
-
           </div>
         </div>
 
         {/* CHILDREN SECTION (Buttons + Details) */}
         <div className="relative z-20 w-full flex flex-col items-center pb-32">
-           {children}
+          {children}
         </div>
-
       </div>
     </div>
   );

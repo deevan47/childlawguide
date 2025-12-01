@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
-import { MAP_NODES, ExtendedNodePosition } from "../constants";
+import { MAP_NODES } from "../constants"; 
+import { ExtendedNodePosition } from "../types";
 import webBackground from "../assets/images/web.jpeg";
 
 interface WebMapViewProps {
@@ -165,38 +166,6 @@ const WebMapView: React.FC<WebMapViewProps> = ({
             size={24}
           />
         </button>
-
-        <div className="flex flex-col items-end text-right">
-          <h1
-            className="text-3xl text-black tracking-wide uppercase drop-shadow-sm"
-            style={{ fontFamily: "Impact, sans-serif" }}
-          >
-            Child Welfare System
-          </h1>
-          <p
-            className="text-sm text-gray-600 font-semibold tracking-wider uppercase"
-            style={{ fontFamily: "Poppins, sans-serif" }}
-          >
-            Government of India
-          </p>
-        </div>
-      </div>
-
-      <div className="absolute top-24 left-12 z-40 hidden md:block animate-bounce-slow">
-        <div className="absolute -top-10 left-1/2 w-0.5 h-16 bg-gray-400 -translate-x-1/2"></div>
-        <img
-          src="https://api.dicebear.com/9.x/avataaars/svg?seed=Spidey&clothing=blazerAndShirt&eyes=happy&top=shortHair&hairColor=black&skinColor=light"
-          alt="Guide"
-          className="w-28 h-28 relative top-4 rotate-180 drop-shadow-2xl"
-        />
-        <div className="absolute top-28 left-20 w-48 bg-white text-black p-3 rounded-xl rounded-tl-none shadow-xl border border-gray-200 animate-fade-in-up">
-          <p
-            className="text-xs font-semibold leading-tight"
-            style={{ fontFamily: "Poppins, sans-serif" }}
-          >
-            Select a category to view roles & responsibilities.
-          </p>
-        </div>
       </div>
 
       <svg

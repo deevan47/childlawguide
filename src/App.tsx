@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { ArrowLeft } from 'lucide-react'; // Import the icon
 import Navbar from './components/Navbar';
 import HomeView from './components/HomeView';
 import WebMapView from './components/WebMapView';
@@ -68,11 +69,22 @@ const App: React.FC = () => {
      }, 200);
   };
 
+  // Logic to determine where the Global Back Button takes you
+  const handleGlobalBack = () => {
+    if (currentView === 'content') {
+      handleBackToMap();
+    } else if (currentView === 'map') {
+      handleBackToHome();
+    }
+  };
+
   const renderContent = () => {
     if (!selectedTopicId) return null;
 
     const SpecificPage = PAGE_REGISTRY[selectedTopicId];
     
+    // Note: We pass onBack, but since we have a global button now, 
+    // the child components don't strictly need to render their own buttons.
     if (SpecificPage) {
       return <SpecificPage onBack={handleBackToMap} onHome={handleBackToHome} />;
     }
@@ -86,6 +98,23 @@ const App: React.FC = () => {
       <Navbar onNavigateHome={handleBackToHome} onNavigateTopic={handleTopicSelect} />
 
       <main className="relative w-full h-screen pt-[72px]">
+        
+        {/* --- GLOBAL BACK BUTTON --- */}
+        {/* Only shows if NOT on home screen. Positioned under Navbar (top-24) */}
+        {currentView !== 'home' && (
+          <button
+            onClick={handleGlobalBack}
+            className="absolute top-24 left-8 z-50 flex items-center justify-center w-12 h-12 bg-black rounded-full shadow-lg hover:bg-gray-800 transition-transform active:scale-95 group border-2 border-gray-100"
+          >
+            <ArrowLeft
+              className="text-white group-hover:-translate-x-1 transition-transform"
+              size={24}
+            />
+          </button>
+        )}
+
+        {/* --- VIEWS --- */}
+
         {currentView === 'home' && (
           <div className={`absolute inset-0 transition-all duration-700 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}>
             <HomeView onDive={() => handleTopicSelect('map')} onTopicSelect={handleTopicSelect} />
