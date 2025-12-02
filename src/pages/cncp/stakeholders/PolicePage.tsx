@@ -19,7 +19,7 @@ const PolicePage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
     characterImage: guideImage,
     content: `
       <p>
-        Police officers, .
+        Police officers, particularly those in Special Juvenile Police Units (SJPUs) and Child Welfare Police Officers (CWPOs), are essential for the protection of Children in Need of Care and Protection (CNCP) under the Juvenile Justice Act. Their key duties involve the immediate rescue and protection of vulnerable children, ensuring they are treated with dignity and in a child-friendly manner. They are mandated to provide immediate care and, most importantly, produce the child before the Child Welfare Committee (CWC) without delay to ensure they are swiftly connected to safety, support services, and long-term rehabilitation. .
       </p>
       
     `,
@@ -40,7 +40,6 @@ const PolicePage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
             { label: "Standard Operating Procedure", id: "sec-sop" },
             { label: "Juvenile Treatment Guidelines", id: "sec-guide" },
             { label: "Parole Officer", id: "sec-parole" },
-            { label: "Collaboration", id: "sec-collab" },
           ].map((btn) => (
             <button
               key={btn.id}
@@ -105,27 +104,6 @@ const PolicePage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
           <p className="font-poppins text-gray-100 leading-relaxed text-xl font-light tracking-wide">
             Police coordinate with <strong className="text-white font-semibold">Probation Officers</strong>. They monitor released children discreetly to ensure safety without harassment.
           </p>
-        </section>
-
-        {/* Collaboration Section */}
-        <section id="sec-collab" className="bg-white/5 backdrop-blur-xl rounded-3xl p-10 border border-white/20 shadow-2xl relative overflow-hidden group hover:bg-white/10 transition-colors">
-          <div className="absolute top-6 right-6 opacity-15 font-impact text-8xl text-white group-hover:opacity-30 transition-opacity select-none">05</div>
-          <h3 className="font-impact text-4xl md:text-5xl text-blue-200 mb-10 tracking-wide drop-shadow-md border-b border-white/20 pb-6 inline-block">
-            Collaboration
-          </h3>
-          <p className="font-poppins text-gray-100 leading-relaxed text-xl font-light tracking-wide mb-10">
-            Police must actively collaborate with the following organizations to ensure child safety:
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-            {["NGOs", "Hospitals", "Childline (1098)", "Legal Aid"].map((org) => (
-              <div
-                key={org}
-                className="bg-black/30 py-8 rounded-3xl text-center font-poppins font-semibold border border-white/20 hover:bg-red-900/50 transition-colors cursor-default text-xl"
-              >
-                {org}
-              </div>
-            ))}
-          </div>
         </section>
       </div>
     </ContentView>
