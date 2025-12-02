@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 
-// UPDATED IMAGE PATHS ✔
 import heroImg from '../assets/images/home.jpeg';
 import boyImg from '../assets/images/boy.png';
 import girlImg from '../assets/images/girl.png';
@@ -51,7 +50,6 @@ const HomeView: React.FC<HomeViewProps> = ({ onDive, onTopicSelect }) => {
       ref={scrollContainerRef}
       className="h-screen w-full overflow-y-auto scrollbar-hide bg-[#Fdfbf7] relative"
     >
-      {/* ================= HERO SECTION ================= */}
       <section className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden shrink-0">
         <div className="absolute inset-0 z-0">
           <img src={heroImg} alt="Background" className="w-full h-full object-cover" />
@@ -59,28 +57,28 @@ const HomeView: React.FC<HomeViewProps> = ({ onDive, onTopicSelect }) => {
         </div>
 
         <div className="container mx-auto px-6 z-10 grid lg:grid-cols-2 gap-12 h-full items-center relative">
-          <div className="text-white space-y-2 flex flex-col justify-center animate-fade-in-up text-center lg:text-left h-full pb-20 lg:pb-0">
-            <h3 className="text-sm md:text-base font-bold tracking-[0.2em] uppercase text-gray-300 mb-2">
-              One Stop Guide on How to Deal with
+          <div className="text-white space-y-4 flex flex-col justify-center animate-fade-in-up text-center lg:text-left h-full pb-20 lg:pb-0">
+
+            <h3
+              className="koulen-text uppercase text-gray-300"
+              style={{ fontSize: '40px' }}
+            >
+              ONE STOP GUIDE ON HOW TO DEAL WITH
             </h3>
 
-            <h1 className="text-4xl md:text-7xl lg:text-8xl font-black uppercase leading-none tracking-tighter">
-              Children <br />
-              in Conflict <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
-                With The Law
-              </span>
+            <h1
+              className="impact-text font-black leading-tight"
+              style={{ fontSize: '80px' }}
+            >
+              Children in Conflict with the Law and Children in Need of Care and Protection
             </h1>
 
-            <h2 className="text-2xl md:text-5xl font-serif italic text-blue-300 font-light mt-4">
-              & Children in Need of Care
-            </h2>
           </div>
 
           <div className="relative h-full flex items-end justify-center lg:justify-end pb-0">
             <div className="relative flex items-end -space-x-12 md:-space-x-24 translate-y-4 lg:translate-y-0">
               <div className="absolute -top-40 left-1/2 -translate-x-1/2 animate-bounce-slow z-30 w-48 bg-white text-black p-4 rounded-2xl rounded-bl-none shadow-xl text-sm font-semibold text-center hidden md:block border border-gray-200">
-                Hey! We are your friendly guides. <br /> Scroll down to explore!
+                Hello! Welcome to our one–stop guide on how to help CCL and CNCP. We will be your guides to the website!
               </div>
 
               <img
@@ -109,7 +107,6 @@ const HomeView: React.FC<HomeViewProps> = ({ onDive, onTopicSelect }) => {
         </div>
       </section>
 
-      {/* ================= SCROLL SECTION ================= */}
       <section
         className="relative w-full min-h-screen bg-[#9f1e22] text-white pt-20 pb-32"
         style={{ backgroundImage: `radial-gradient(circle at 50% 50%, #b92b2b 0%, #9f1e22 100%)` }}
@@ -128,7 +125,6 @@ const HomeView: React.FC<HomeViewProps> = ({ onDive, onTopicSelect }) => {
 
         <div className="container mx-auto px-6 max-w-5xl flex flex-col gap-24 relative z-10">
 
-          {/* CNCP */}
           <div className="flex flex-col items-center text-center">
             <div className="max-w-4xl w-full">
               <h1 className="text-4xl md:text-6xl font-black uppercase leading-none mb-4 drop-shadow-md">
@@ -159,7 +155,6 @@ const HomeView: React.FC<HomeViewProps> = ({ onDive, onTopicSelect }) => {
             </div>
           </div>
 
-          {/* CCL */}
           <div className="flex flex-col items-center text-center">
             <div className="max-w-4xl w-full">
               <h1 className="text-4xl md:text-6xl font-black uppercase leading-none mb-4 drop-shadow-md">
@@ -190,7 +185,6 @@ const HomeView: React.FC<HomeViewProps> = ({ onDive, onTopicSelect }) => {
             </div>
           </div>
 
-          {/* CHILD WELFARE */}
           <div className="flex flex-col items-center text-center">
             <div className="max-w-4xl w-full">
               <h1 className="text-4xl md:text-6xl font-black uppercase leading-none mb-4 drop-shadow-md">
