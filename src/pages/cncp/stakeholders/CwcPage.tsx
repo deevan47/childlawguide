@@ -3,7 +3,7 @@ import ContentView from "../../../components/ContentView";
 import { TOPIC_CONTENT } from "../../../constants";
 
 // Assets
-import policeBg from "../../../assets/images/police-bg.png";
+import policeBg from "../../../assets/images/cwc-bg.png";
 import mascot from "../../../assets/images/commitee.png";
 
 // --- IMAGE IMPORTS ---
