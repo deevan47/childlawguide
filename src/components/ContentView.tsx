@@ -18,7 +18,6 @@ const ContentView: React.FC<ContentViewProps> = ({
   const bg = data.bgImage || ASSETS.bgCommon;
   const char = data.characterImage || ASSETS.guide;
 
-  // Requirement 4: Full form category subtitle based on ID
   const categorySubtitle = data.id.includes('ccl') 
     ? "Children in Conflict with Law" 
     : "Children in Need of Care and Protection";

@@ -1,111 +1,204 @@
-import React from "react";
+import React, { useState } from "react";
 import ContentView from "../../components/ContentView";
 import { TOPIC_CONTENT } from "../../constants";
 
-import policeBg from "../../assets/images/justicebg.png";
-import guideImage from "../../assets/images/bjudge.png";
+// Assets
+import jjbBg from "../../assets/images/justicebg.png"; // Reusing justice background
+import jjbMascot from "../../assets/images/bjudge.png"; // Judge mascot
+
+// Placeholder timeline images (Reuse existing or replace with specific ones)
+import img1 from "../../assets/images/cwc/1img1.png";
+import img2 from "../../assets/images/cwc/1img2.png";
+import img3 from "../../assets/images/cwc/1img3.png";
+import img4 from "../../assets/images/cwc/1img4.png";
+
+// --- STRAIGHT LINE ANIMATED CONNECTOR ---
+const PathConnector: React.FC<{
+  direction: "right-to-left" | "left-to-right";
+}> = ({ direction }) => {
+  const pathData =
+    direction === "left-to-right"
+      ? "M 25 0 V 50 H 75 V 100"
+      : "M 75 0 V 50 H 25 V 100";
+
+  return (
+    <div className="hidden md:block w-full h-24 relative overflow-visible pointer-events-none z-0 -my-4">
+      <svg
+        className="absolute inset-0 w-full h-full"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+      >
+        <path
+          d={pathData}
+          fill="none"
+          stroke="#000"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeDasharray="0, 12"
+          vectorEffect="non-scaling-stroke"
+          className="animate-travel"
+        />
+      </svg>
+    </div>
+  );
+};
+
+// --- DATA STRUCTURE FOR JJB ---
+const JJB_DATA = {
+  'composition': {
+    title: "Board Composition",
+    steps: [
+      { id: 1, text: "The JJB consists of a Principal Magistrate (PM) and two Social Workers.", img: img1 },
+      { id: 2, text: "At least one of the social workers must be a woman to ensure gender sensitivity.", img: img2 },
+      { id: 3, text: "The Board functions as a bench, and decisions are made by majority rule.", img: img3 },
+    ]
+  },
+  'powers': {
+    title: "Powers of the Board",
+    steps: [
+      { id: 1, text: "Exclusive power to deal with all proceedings involving children alleged to be in conflict with law.", img: img4 },
+      { id: 2, text: "Powers of a Metropolitan Magistrate or a Judicial Magistrate of the First Class.", img: img1 },
+      { id: 3, text: "Authority to grant bail to any child, irrespective of the offense committed.", img: img2 },
+    ]
+  },
+  'inquiry': {
+    title: "Inquiry Process",
+    steps: [
+      { id: 1, text: "Determine the age of the child to ensure they are treated under the JJ Act.", img: img3 },
+      { id: 2, text: "Conduct a Preliminary Assessment for heinous offenses committed by children aged 16-18.", img: img4 },
+      { id: 3, text: "Complete the inquiry within a period of 4 months (extendable by 2 months).", img: img1 },
+    ]
+  },
+  'functions': {
+    title: "Key Functions",
+    steps: [
+      { id: 1, text: "Ensure that the child's rights are protected throughout the process.", img: img2 },
+      { id: 2, text: "Direct the Probation Officer to prepare a Social Investigation Report (SIR).", img: img3 },
+      { id: 3, text: "Pass final orders for rehabilitation (e.g., community service, counseling, special home).", img: img4 },
+    ]
+  }
+};
 
 const JjbPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
   onBack,
   onHome,
 }) => {
-  const baseData = TOPIC_CONTENT["cncp-stk-police"] || TOPIC_CONTENT["default"];
+  // Use correct ID for JJB
+  const baseData = TOPIC_CONTENT["ccl-jjb"] || TOPIC_CONTENT["default"];
 
   const data = {
     ...baseData,
-    title: "JJB",
-    subtitle: "Children in Need of Care and Protection",
-    bgImage: policeBg,
-    characterImage: guideImage,
+    title: "JUVENILE JUSTICE BOARD",
+    subtitle: "Children in Conflict with Law",
+    bgImage: jjbBg,
+    characterImage: jjbMascot,
     content: `
       <p>
-The Juvenile Justice Board (JJB) is the central and sole legal authority for a Child in Conflict with Law (CCL) under the Juvenile Justice Act. Its main role is to act as a specialised court that prioritises the child's rehabilitation and welfare over punishment. The JJB conducts the entire legal inquiry, ensures the child is handled fairly and protected from the adult criminal system, and decides on the best course of action—such as supervision or placement in a Special Home—always aiming for the child's reform and successful return to society.      </p>
-      
+        The <strong>Juvenile Justice Board (JJB)</strong> is the central and sole legal authority for a Child in Conflict with Law (CCL). Its main role is to act as a specialised court that prioritises the child's rehabilitation and welfare over punishment.
+      </p>
+      <br/>
+      <p>
+        The JJB conducts the entire legal inquiry, ensures the child is handled fairly and protected from the adult criminal system, and decides on the best course of action—such as supervision or placement in a Special Home—always aiming for the child's reform and successful return to society.
+      </p>
     `,
   };
 
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
+  const [activeTab, setActiveTab] = useState<keyof typeof JJB_DATA>('composition');
+  const currentSteps = JJB_DATA[activeTab].steps;
 
   return (
     <ContentView data={data} onBack={onBack} onHome={onHome}>
-      {/* BUTTONS */}
-      <div className="w-full max-w-[1080px] mx-auto mt-8 mb-20 px-6" style={{ paddingLeft: "4vw" }}>
-        <div className="flex flex-wrap justify-start gap-5">
+      <style>{`
+        @keyframes travelDash {
+          to { stroke-dashoffset: -24; }
+        }
+        .animate-travel {
+          animation: travelDash 1s linear infinite;
+        }
+      `}</style>
+
+      {/* --- 1. TOP BUTTONS --- */}
+      <div className="w-full max-w-6xl mx-auto mt-0 mb-12 px-4">
+        <div className="flex flex-wrap justify-center gap-4">
           {[
-            { label: "Investigating Officer (IO)", id: "sec-io" },
-            { label: "Standard Operating Procedure", id: "sec-sop" },
-            { label: "Juvenile Treatment Guidelines", id: "sec-guide" },
-            { label: "Parole Officer", id: "sec-parole" },
+            { label: "Composition", id: "composition" },
+            { label: "Powers", id: "powers" },
+            { label: "Inquiry Process", id: "inquiry" },
+            { label: "Key Functions", id: "functions" },
           ].map((btn) => (
             <button
               key={btn.id}
-              onClick={() => scrollToSection(btn.id)}
-              className="min-w-[200px] px-10 py-5 rounded-full bg-gradient-to-b from-red-700 to-red-900 hover:from-red-600 hover:to-red-800 text-white font-poppins font-semibold text-lg tracking-wide shadow-xl transition-transform transform hover:-translate-y-1 active:scale-95 border-2 border-red-500/30"
+              onClick={() => setActiveTab(btn.id as keyof typeof JJB_DATA)}
+              className={`px-8 py-3 rounded-full font-bold text-sm md:text-base transition-all shadow-lg border-2 ${
+                activeTab === btn.id
+                  ? "bg-red-800 text-white border-red-900"
+                  : "bg-white text-red-800 border-red-100 hover:bg-red-50"
+              }`}
             >
               {btn.label}
             </button>
           ))}
         </div>
+
+        {/* Section Title Indicator */}
+        <div className="text-center mt-12 mb-8">
+           <h3 className="font-poppins text-2xl md:text-3xl italic text-red-900 tracking-wide font-semibold drop-shadow-sm">
+             {JJB_DATA[activeTab].title}
+           </h3>
+           <div className="h-1 w-32 bg-red-600 mx-auto mt-3 rounded-full opacity-80"></div>
+        </div>
       </div>
 
-      {/* CONTENT SECTIONS */}
-      <div className="w-full max-w-[1080px] mx-auto px-6 space-y-28" style={{ paddingLeft: "4vw" }}>
-        {/* IO Section */}
-        <section id="sec-io" className="bg-white/5 backdrop-blur-xl rounded-3xl p-10 border border-white/20 shadow-2xl relative overflow-hidden group hover:bg-white/10 transition-colors">
-          <div className="absolute top-6 right-6 opacity-15 font-impact text-8xl text-white group-hover:opacity-30 transition-opacity select-none">01</div>
-          <div className="flex flex-col md:flex-row md:items-start gap-8">
-            <h3 className="font-impact text-4xl md:text-5xl text-blue-200 tracking-wide drop-shadow-md border-b border-white/20 pb-6 inline-block md:w-1/4">
-              Investigating Officer (IO)
-            </h3>
-            <p className="font-poppins text-gray-100 leading-relaxed text-xl md:text-xl font-light tracking-wide md:w-3/4 md:pl-10">
-              The Investigating Officer in a juvenile case <strong className="text-white font-semibold">must not be in uniform</strong>. Their role is to investigate circumstances of the child's situation, ensuring the child is not traumatized while gathering evidence.
-            </p>
-          </div>
-        </section>
+      {/* --- 2. ZIG-ZAG TIMELINE CONTENT --- */}
+      <div className="w-full max-w-6xl mx-auto px-6 pb-40">
+        
+        {currentSteps.map((step, index) => {
+          const isLeftAligned = index % 2 === 0;
+          const isLast = index === currentSteps.length - 1;
 
-        {/* SOP Section */}
-        <section id="sec-sop" className="bg-white/5 backdrop-blur-xl rounded-3xl p-10 border border-white/20 shadow-2xl relative overflow-hidden group hover:bg-white/10 transition-colors">
-          <div className="absolute top-6 right-6 opacity-15 font-impact text-8xl text-white group-hover:opacity-30 transition-opacity select-none">02</div>
-          <h3 className="font-impact text-4xl md:text-5xl text-blue-200 mb-8 tracking-wide drop-shadow-md border-b border-white/20 pb-6 inline-block">
-            Standard Operating Procedure
-          </h3>
-          <p className="font-poppins text-gray-100 leading-relaxed text-xl font-light tracking-wide">
-            The SOP includes immediate case registration, medical examination if needed, and production before the CWC within <strong className="text-white font-semibold">24 hours</strong>. Children must never be kept in police lock-ups.
-          </p>
-        </section>
+          return (
+            <div key={step.id} className="relative">
+              
+              {/* Content Row */}
+              <div className={`flex flex-col md:flex-row items-center gap-10 md:gap-24 py-6 ${
+                !isLeftAligned ? 'md:flex-row-reverse' : ''
+              }`}>
+                
+                {/* IMAGE SIDE */}
+                <div className="w-full md:w-1/2 flex justify-center relative z-10">
+                  <div className="bg-white p-3 rounded-2xl shadow-xl transform hover:scale-105 transition-transform duration-500 border border-red-100 w-full max-w-[450px]">
+                    <img 
+                      src={step.img} 
+                      alt={`Step ${step.id}`} 
+                      className="w-full h-auto rounded-xl object-cover border border-slate-100"
+                    />
+                  </div>
+                </div>
 
-        {/* Guidelines Section */}
-        <section id="sec-guide" className="bg-white/5 backdrop-blur-xl rounded-3xl p-10 border border-white/20 shadow-2xl relative overflow-hidden group hover:bg-white/10 transition-colors">
-          <div className="absolute top-6 right-6 opacity-15 font-impact text-8xl text-white group-hover:opacity-30 transition-opacity select-none">03</div>
-          <h3 className="font-impact text-4xl md:text-5xl text-blue-200 mb-8 tracking-wide drop-shadow-md border-b border-white/20 pb-6 inline-block">
-            Treatment Guidelines
-          </h3>
-          <div className="font-poppins text-gray-100 leading-relaxed text-xl font-light tracking-wide">
-            <p className="mb-8">Police officers must follow these protocols:</p>
-            <ul className="list-disc pl-8 space-y-5 marker:text-red-500">
-              <li>Never use handcuffs on children.</li>
-              <li>Speak politely and in child-friendly language.</li>
-              <li>Provide immediate food and water.</li>
-              <li>Contact parents or guardians without delay.</li>
-            </ul>
-          </div>
-        </section>
+                {/* TEXT SIDE */}
+                <div className="w-full md:w-1/2 text-center md:text-left">
+                  <div className="bg-white p-8 rounded-3xl shadow-lg border border-red-50 relative">
+                    <p className="font-poppins text-lg text-slate-700 leading-loose font-medium">
+                      {step.text}
+                    </p>
+                  </div>
+                </div>
 
-        {/* Parole Section */}
-        <section id="sec-parole" className="bg-white/5 backdrop-blur-xl rounded-3xl p-10 border border-white/20 shadow-2xl relative overflow-hidden group hover:bg-white/10 transition-colors">
-          <div className="absolute top-6 right-6 opacity-15 font-impact text-8xl text-white group-hover:opacity-30 transition-opacity select-none">04</div>
-          <h3 className="font-impact text-4xl md:text-5xl text-blue-200 mb-8 tracking-wide drop-shadow-md border-b border-white/20 pb-6 inline-block">
-            Parole / Probation
-          </h3>
-          <p className="font-poppins text-gray-100 leading-relaxed text-xl font-light tracking-wide">
-            Police coordinate with <strong className="text-white font-semibold">Probation Officers</strong>. They monitor released children discreetly to ensure safety without harassment.
-          </p>
-        </section>
+              </div>
+
+              {/* CONNECTING LINES */}
+              {!isLast && (
+                <PathConnector direction={isLeftAligned ? 'left-to-right' : 'right-to-left'} />
+              )}
+
+            </div>
+          );
+        })}
+
       </div>
+
     </ContentView>
   );
 };
+
 export default JjbPage;

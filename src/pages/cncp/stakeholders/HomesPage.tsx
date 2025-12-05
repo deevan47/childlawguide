@@ -3,17 +3,16 @@ import ContentView from "../../../components/ContentView";
 import { TOPIC_CONTENT } from "../../../constants";
 
 // Assets
-import policeBg from "../../../assets/images/hfcbg.png";
-import guideImage from "../../../assets/images/hfc.png";
+import homesBg from "../../../assets/images/hfcbg.png";
+import homesMascot from "../../../assets/images/hfc.png";
 
-// SOP Images
-import img1 from "../../../assets/images/cwc/psop1.png";
-import img2 from "../../../assets/images/cwc/psop2.png";
-import img3a from "../../../assets/images/cwc/psop3a.png";
-import img3b from "../../../assets/images/cwc/psop3b.png";
-import img4 from "../../../assets/images/cwc/psop4.png";
+// Timeline images
+import img1 from "../../../assets/images/cwc/1img1.png";
+import img2 from "../../../assets/images/cwc/1img2.png";
+import img3 from "../../../assets/images/cwc/1img3.png";
+import img4 from "../../../assets/images/cwc/1img4.png";
 
-// --- PATH CONNECTOR (Exact same style as CWC page) ---
+// --- PATH CONNECTOR ---
 const PathConnector: React.FC<{
   direction: "right-to-left" | "left-to-right";
 }> = ({ direction }) => {
@@ -32,10 +31,10 @@ const PathConnector: React.FC<{
         <path
           d={pathData}
           fill="none"
-          stroke="#000000ff"
-          strokeWidth="3"
+          stroke="#ef4444"
+          strokeWidth="2"
           strokeLinecap="round"
-          strokeDasharray="7, 15"
+          strokeDasharray="0, 15"
           vectorEffect="non-scaling-stroke"
           className="animate-travel"
         />
@@ -44,234 +43,296 @@ const PathConnector: React.FC<{
   );
 };
 
-const PolicePage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
+// --- SUBSECTION DATA ---
+const HOMES_DATA = {
+  "children-homes": {
+    title: "Children's Homes",
+    steps: [
+      {
+        id: 1,
+        text: "Established by the State Govt or NGOs for the long-term care of children in need of care and protection.",
+        img: img1,
+      },
+      {
+        id: 2,
+        text: "Provides education, vocational training, therapy, and nutrition to ensure holistic development.",
+        img: img2,
+      },
+      {
+        id: 3,
+        text: "Focuses on reintegrating the child into society or their biological family whenever possible.",
+        img: img3,
+      },
+    ],
+  },
+  saa: {
+    title: "Specialised Adoption Agencies (SAA)",
+    steps: [
+      {
+        id: 1,
+        text: "Recognized by the State Government for the placement of orphaned, abandoned, or surrendered children.",
+        img: img4,
+      },
+      {
+        id: 2,
+        text: "Responsible for the care and protection of these children until they are legally adopted.",
+        img: img1,
+      },
+      {
+        id: 3,
+        text: "Facilitates the legal adoption process through CARA guidelines.",
+        img: img2,
+      },
+    ],
+  },
+
+  // COMMUNITY CARE
+  "open-shelters": {
+    title: "Open Shelters",
+    steps: [
+      {
+        id: 1,
+        text: "Community-based facilities for children in street situations or runaways.",
+        img: img3,
+      },
+      {
+        id: 2,
+        text: "Functions as a drop-in center providing food, washing facilities, and a safe sleeping space.",
+        img: img4,
+      },
+      {
+        id: 3,
+        text: "Protects children and works toward family reunification.",
+        img: img1,
+      },
+    ],
+  },
+  "fit-facility": {
+    title: "Fit Facility",
+    steps: [
+      {
+        id: 1,
+        text: "Recognized organizations fit to temporarily take responsibility for a child.",
+        img: img2,
+      },
+      { id: 2, text: "Used when specialized care is needed.", img: img3 },
+      { id: 3, text: "CWC or JJB may place a child here.", img: img4 },
+    ],
+  },
+  "foster-care": {
+    title: "Foster Care",
+    steps: [
+      { id: 1, text: "Placement in a family-like environment.", img: img1 },
+      { id: 2, text: "Selected by the CWC to provide care.", img: img2 },
+      { id: 3, text: "State financially supports foster families.", img: img3 },
+    ],
+  },
+  sponsorship: {
+    title: "Sponsorship",
+    steps: [
+      {
+        id: 1,
+        text: "Prevents child separation by supporting families financially.",
+        img: img4,
+      },
+      { id: 2, text: "Covers medical and educational needs.", img: img1 },
+      { id: 3, text: "Helps children stay within families.", img: img2 },
+    ],
+  },
+  "after-care": {
+    title: "After Care",
+    steps: [
+      {
+        id: 1,
+        text: "Supports persons aged 18–21 leaving institutional care.",
+        img: img3,
+      },
+      {
+        id: 2,
+        text: "Provides housing, financial help, and career guidance.",
+        img: img4,
+      },
+      { id: 3, text: "Aims for independence & self-sufficiency.", img: img1 },
+    ],
+  },
+};
+
+const HomesPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
   onBack,
   onHome,
 }) => {
-  const baseData = TOPIC_CONTENT["cncp-stk-police"] || TOPIC_CONTENT["default"];
+  const baseData = TOPIC_CONTENT["cncp-stk-homes"] || TOPIC_CONTENT["default"];
 
   const data = {
     ...baseData,
     title: "Homes For Children",
     subtitle: "Children in Need of Care and Protection",
-    bgImage: policeBg,
-    characterImage: guideImage,
-    content: `<p>The Juvenile Justice Act, 2015, sets up special government-registered Child Care Institutions (CCIs) for Children in Need of Care and Protection (CNCP). These homes are different from those for CCLs and include Children's Homes, which offer long-term shelter, food, and education, and Specialized Adoption Agencies (SAAs), which handle adoption. The Child Welfare Committee (CWC) places CNCPs in these CCIs, which follow strict rules to give individualized care and support, aiming for the child to be successfully returned to their family or placed in new families through adoption or foster care.</p>`,
+    bgImage: homesBg,
+    characterImage: homesMascot,
+    content: `
+      <p>The Juvenile Justice Act, 2015, sets up special government-registered Child Care Institutions (CCIs) for Children in Need of Care and Protection (CNCP). These homes are different from those for CCLs and include Children's Homes, which offer long-term shelter, food, and education, and Specialized Adoption Agencies (SAAs), which handle adoption. The Child Welfare Committee (CWC) places CNCPs in these CCIs, which follow strict rules to give individualized care and support, aiming for the child to be successfully returned to their family or placed in new families through adoption or foster care.</p>
+    `,
   };
 
-  const [activeTab, setActiveTab] = useState("sop");
+  const [activeMainTab, setActiveMainTab] = useState<
+    "institutional" | "community"
+  >("institutional");
+  const [activeSubTab, setActiveSubTab] =
+    useState<keyof typeof HOMES_DATA>("children-homes");
+
+  const currentSteps = HOMES_DATA[activeSubTab].steps;
 
   return (
     <ContentView data={data} onBack={onBack} onHome={onHome}>
       <style>{`
-        /* Movement animation (same as CWC page) */
-        @keyframes travelDash {
-          from { stroke-dashoffset: 30; }
-          to { stroke-dashoffset: 0; }
-        }
-        .animate-travel {
-          animation: travelDash 1s linear infinite;
-        }
+        @keyframes travelDash { to { stroke-dashoffset: -30; } }
+        .animate-travel { animation: travelDash 1s linear infinite; }
       `}</style>
 
-      {/* TOP BUTTONS */}
-      <div className="w-full max-w-6xl mx-auto mt-0 mb-12 px-4">
-        <div className="flex flex-wrap justify-center gap-4">
-          {[
-            { label: "Institutional Care", id: "ic" },
-            { label: "Community-based Care", id: "cbc" },
-          ].map((btn) => (
+      {/* MAIN TAB AREA */}
+      <div className="w-full max-w-6xl mx-auto mt-0 mb-12 px-4 relative z-30">
+        <div className="flex flex-wrap justify-center gap-6 md:gap-10 mb-8">
+          {/* --- INSTITUTIONAL CARE TAB (now same hover style as community) --- */}
+          <div className="relative group">
             <button
-              key={btn.id}
-              onClick={() => setActiveTab(btn.id)}
-              className={`px-8 py-3 rounded-full font-bold text-sm md:text-base transition-all shadow-lg border-2 ${
-                activeTab === btn.id
+              onClick={() => {
+                setActiveMainTab("institutional");
+                setActiveSubTab("children-homes");
+              }}
+              className={`px-8 py-3 rounded-full font-bold text-sm md:text-lg border-2 shadow-lg transition-all ${
+                activeMainTab === "institutional"
                   ? "bg-red-800 text-white border-red-900"
                   : "bg-white text-red-800 border-red-100 hover:bg-red-50"
               }`}
             >
-              {btn.label}
+              Institutional Care
             </button>
-          ))}
+
+            {/* Unified larger dropdown */}
+            <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 w-[600px] z-50">
+              <div className="bg-white border-2 border-red-100 rounded-2xl p-3 shadow-2xl flex flex-wrap justify-between gap-2">
+                {[
+                  { id: "children-homes", label: "Children's Homes" },
+                  { id: "saa", label: "Specialised Adoption Agencies" },
+                ].map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveMainTab("institutional");
+                      setActiveSubTab(tab.id as keyof typeof HOMES_DATA);
+                    }}
+                    className={`flex-1 min-w-[100px] py-3 px-3 rounded-xl text-xs md:text-sm font-bold transition-colors ${
+                      activeSubTab === tab.id
+                        ? "bg-red-600 text-white"
+                        : "text-gray-600 hover:bg-red-50"
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* --- COMMUNITY CARE TAB (unchanged) --- */}
+          <div className="relative group">
+            <button
+              onClick={() => {
+                setActiveMainTab("community");
+                setActiveSubTab("open-shelters");
+              }}
+              className={`px-8 py-3 rounded-full font-bold text-sm md:text-lg border-2 shadow-lg transition-all ${
+                activeMainTab === "community"
+                  ? "bg-red-800 text-white border-red-900"
+                  : "bg-white text-red-800 border-red-100 hover:bg-red-50"
+              }`}
+            >
+              Community-based Care
+            </button>
+
+            <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 w-[600px] z-50">
+              <div className="bg-white border-2 border-red-100 rounded-2xl p-3 shadow-2xl flex flex-wrap justify-between gap-2">
+                {[
+                  { id: "open-shelters", label: "Open Shelters" },
+                  { id: "fit-facility", label: "Fit Facility" },
+                  { id: "foster-care", label: "Foster Care" },
+                  { id: "sponsorship", label: "Sponsorship" },
+                  { id: "after-care", label: "After Care" },
+                ].map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveMainTab("community");
+                      setActiveSubTab(tab.id as keyof typeof HOMES_DATA);
+                    }}
+                    className={`flex-1 min-w-[100px] py-2 px-3 rounded-xl text-xs md:text-sm font-bold transition-colors ${
+                      activeSubTab === tab.id
+                        ? "bg-red-600 text-white"
+                        : "text-gray-600 hover:bg-red-50"
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* CURRENT SECTION TITLE */}
+        <div className="text-center mb-16">
+          <h3 className="font-poppins text-xl md:text-3xl italic text-red-900 font-semibold tracking-wide">
+            {HOMES_DATA[activeSubTab].title}
+          </h3>
+          <div className="h-1 w-24 mx-auto mt-3 bg-red-600 rounded-full opacity-80"></div>
         </div>
       </div>
 
-      {/* ---- SOP CONTENT ---- */}
-      {activeTab === "sop" && (
-        <div className="w-full max-w-6xl mx-auto px-6 pb-40">
-          <div className="text-center mb-12 underline font-bold text-2xl text-slate-800 font-poppins">
-            Standard Operating Procedure
-          </div>
+      {/* TIMELINE CONTENT */}
+      <div className="w-full max-w-6xl mx-auto px-6 pb-40">
+        {currentSteps.map((step, index) => {
+          const isLeftAligned = index % 2 === 0;
+          const isLast = index === currentSteps.length - 1;
 
-          {/* STEP 1 */}
-          <div className="relative">
-            <div className="flex flex-col md:flex-row items-start gap-10">
-              <div className="w-full md:w-1/2 flex justify-center">
-                <img
-                  src={img1}
-                  alt="Apprehended"
-                  className="w-full max-w-md border-2 border-black rounded-xl"
-                />
-              </div>
-
-              <div className="w-full md:w-1/2">
-                <h3 className="font-bold text-xl mb-2 font-poppins">
-                  1. IF A CHILD IS APPREHENDED
-                </h3>
-                <p className="text-sm mb-4">
-                  If a person who appears to be a child is found in conflict with the law, the special juvenile police unit or child welfare police officer takes charge of the situation.
-                </p>
-
-                <div className="flex gap-4 mt-4">
-                  <div className="bg-blue-900 text-white p-3 text-xs rounded-lg shadow-lg w-1/2">
-                    *The police officer must be present in civilian clothing.
+          return (
+            <div key={step.id} className="relative">
+              <div
+                className={`flex flex-col md:flex-row items-center gap-10 md:gap-24 py-6 ${
+                  !isLeftAligned ? "md:flex-row-reverse" : ""
+                }`}
+              >
+                <div className="w-full md:w-1/2 flex justify-center">
+                  <div className="bg-white p-3 rounded-2xl shadow-xl border border-red-100 w-full max-w-[450px] transform hover:scale-105 transition-transform duration-500">
+                    <img
+                      src={step.img}
+                      alt=""
+                      className="w-full rounded-xl object-cover border border-slate-100"
+                    />
                   </div>
+                </div>
 
-                  <div className="bg-blue-900 text-white p-3 text-xs rounded-lg shadow-lg w-1/2">
-                    *The child must NOT be placed in a police lock-up or jail.
+                <div className="w-full md:w-1/2">
+                  <div className="bg-white p-8 rounded-3xl shadow-lg border border-red-50">
+                    <p className="text-lg md:text-xl font-poppins text-slate-700 leading-loose font-medium">
+                      {step.text}
+                    </p>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <PathConnector direction="left-to-right" />
-          </div>
-
-          {/* STEP 2 */}
-          <div className="relative">
-            <div className="flex flex-col md:flex-row-reverse items-start gap-10 py-6">
-              <div className="w-full md:w-1/2 flex justify-center">
-                <img
-                  src={img2}
-                  alt="Board"
-                  className="w-full max-w-md border-2 border-black rounded-xl"
+              {!isLast && (
+                <PathConnector
+                  direction={isLeftAligned ? "left-to-right" : "right-to-left"}
                 />
-              </div>
-
-              <div className="w-full md:w-1/2 text-right">
-                <h3 className="font-bold text-xl mb-2 font-poppins">
-                  2. PRODUCE BEFORE THE BOARD
-                </h3>
-                <p className="text-sm">
-                  The <span className="text-red-600 font-bold">SJPU/CWPO</span>{" "}
-                  must bring the child before the Juvenile Justice Board without delay within 24 hours of apprehension (time spent travelling is excluded).
-                </p>
-              </div>
+              )}
             </div>
-
-            <PathConnector direction="right-to-left" />
-          </div>
-
-          {/* STEP 3 */}
-          <div className="relative">
-            <div className="flex flex-col md:flex-row items-start gap-10 py-6">
-              <div className="w-full md:w-1/2 flex flex-col gap-4 items-center">
-                <img
-                  src={img3a}
-                  alt="Cop File"
-                  className="w-full max-w-xs border-2 border-black rounded-xl"
-                />
-                <img
-                  src={img3b}
-                  alt="Phone"
-                  className="w-full max-w-xs border-2 border-black rounded-xl"
-                />
-              </div>
-
-              <div className="w-full md:w-1/2">
-                <h3 className="font-bold text-xl mb-2 font-poppins">
-                  3. INFORMING FAMILY AND PROBATION OFFICER
-                </h3>
-
-                <ul className="list-disc pl-5 text-sm space-y-2">
-                  As soon as possible after apprehension the SJPU/CWPO must:
-                  <li><strong>Inform the parent/guardian</strong> (if they can be found) and ask them to be present when the child is produced before the Board.</li>
-                  <li>
-                    <strong>Inform the probation officer</strong> (or if none available, a Child Welfare Officer) to prepare a Social Investigation Report (SIR) about the child’s background.
-                  </li>
-                </ul>
-
-                <div className="bg-blue-900 text-white p-4 text-xs rounded-lg shadow-lg mt-6 w-3/4">
-                  *The SIR should be prepared and submitted to the Board within
-                  two weeks.
-                </div>
-              </div>
-            </div>
-
-            <PathConnector direction="left-to-right" />
-          </div>
-
-          {/* STEP 4 */}
-          <div className="relative">
-            <div className="flex flex-col md:flex-row items-start gap-6 py-6">
-              <div className="w-full md:w-1/3 text-xs leading-relaxed pr-4">
-                <h3 className="font-bold text-lg mb-2 font-poppins">
-                  4. INITIAL DECISION: RELEASE OR CUSTODY
-                </h3>
-                <ul className="list-disc pl-4 space-y-2">
-                  <li>
-                    The officer-in-charge or the Board should release the child on bail (with or without surety) or
-                  </li>                  <li>
-                    Place the child under supervision of a probation officer or under the care of a fit person (for rehabilitation), unless there are reasonable grounds to believe that release would expose the child to criminals, danger, or defeat justice.
-                  </li>
-If the officer/Board refuses bail, they must record the reasons in writing.
-                </ul>
-              </div>
-
-              <div className="w-full md:w-1/3 text-xs leading-relaxed border-l-2 border-dashed border-gray-300 pl-4">
-                <h3 className="font-bold text-sm mb-2 font-poppins">
-                  4.A If the officer-in-charge refuses to release, the child must be kept only in an observation home (in prescribed manner) until the Board can consider the case.
-                  <li>If the Board refuses bail, it must order the child to an observation home or place of safety for a period specified while the inquiry continues.</li>
-                </h3>
-                <ul className="list-disc pl-4 space-y-2">
-                  <li>Child must be kept only in an observation home.</li>
-                </ul>
-
-                <h3 className="font-bold text-sm mt-6 mb-2 font-poppins">
-                  4.B IF CHILD CANNOT MEET BAIL CONDITIONS
-                </h3>
-                <p>If bail not met in 7 days, produce child again to modify.</p>
-              </div>
-
-              <div className="w-full md:w-1/3 flex justify-center items-center">
-                <img
-                  src={img4}
-                  alt="Final Order"
-                  className="w-full max-w-sm border-2 border-black rounded-xl"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* STEP 5 */}
-          <div className="flex justify-end mt-8">
-            <div className="w-full md:w-1/2 bg-white p-6 border-2 border-black rounded-xl shadow-sm">
-              <h3 className="font-bold text-lg mb-2 font-poppins">
-                5. PERSON GIVEN CHARGE OF THE CHILD
-              </h3>
-
-              <ul className="list-disc pl-5 text-sm space-y-2">
-                <li>
-                  Person/organisation given custody is responsible for child's
-                  welfare.
-                </li>
-                <li>Board decides if parent is fit to take the child back.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* OTHER TABS */}
-      {activeTab !== "sop" && (
-        <div className="text-center py-20">
-          <h2 className="text-3xl font-impact text-gray-400">
-            Content Coming Soon
-          </h2>
-        </div>
-      )}
+          );
+        })}
+      </div>
     </ContentView>
   );
 };
 
-export default PolicePage;
+export default HomesPage;

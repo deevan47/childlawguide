@@ -131,7 +131,7 @@ const WebMapView: React.FC<WebMapViewProps> = ({
           <div
             className={`${bgClass} text-white ${hoverEffect} w-full h-full rounded-full flex items-center justify-center text-center transition-all duration-300 cursor-pointer px-1 shadow-md`}
             style={{
-              fontFamily: "Impact, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: `${fontSize}px`,
               lineHeight: 1.1,
               paddingTop: "2px",
