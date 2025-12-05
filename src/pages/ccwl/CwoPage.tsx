@@ -2,7 +2,7 @@ import React from "react";
 import ContentView from "../../components/ContentView";
 import { TOPIC_CONTENT } from "../../constants";
 
-import policeBg from "../../assets/images/justicebg.png";
+import policeBg from "../../assets/images/cwobg.png";
 import guideImage from "../../assets/images/welfare.png";
 
 const CwoPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
