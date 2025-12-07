@@ -1,18 +1,13 @@
 import React, { useState } from "react";
 import ContentView from "../../components/ContentView";
 import { TOPIC_CONTENT } from "../../constants";
-
-// Assets
-import parentsBg from "../../assets/images/justicebg.png"; 
-import parentsMascot from "../../assets/images/bjudge.png"; // Specific parents mascot if available
-
-// Placeholder timeline images (Reuse existing or replace with specific ones)
+import parentsBg from "../../assets/images/justicebg.png";
+import parentsMascot from "../../assets/images/bjudge.png";
 import img1 from "../../assets/images/cwc/1img1.png";
 import img2 from "../../assets/images/cwc/1img2.png";
 import img3 from "../../assets/images/cwc/1img3.png";
 import img4 from "../../assets/images/cwc/1img4.png";
 
-// --- STRAIGHT LINE ANIMATED CONNECTOR ---
 const PathConnector: React.FC<{
   direction: "right-to-left" | "left-to-right";
 }> = ({ direction }) => {
@@ -43,47 +38,94 @@ const PathConnector: React.FC<{
   );
 };
 
-// --- DATA STRUCTURE FOR PARENTS ---
+// DATA STRUCTURE FOR PARENTS
 const PARENTS_DATA = {
-  'inquiry': {
+  inquiry: {
     title: "Participation in Inquiry",
     steps: [
-      { id: 1, text: "Parents must attend all Juvenile Justice Board (JJB) proceedings with their child.", img: img1 },
-      { id: 2, text: "They provide crucial family background information to the Probation Officer for the Social Investigation Report.", img: img2 },
-      { id: 3, text: "Their presence provides emotional support and ensures the child feels safe during legal processes.", img: img3 },
-    ]
+      {
+        id: 1,
+        text: "Parents must attend all Juvenile Justice Board (JJB) proceedings with their child.",
+        img: img1,
+      },
+      {
+        id: 2,
+        text: "They provide crucial family background information to the Probation Officer for the Social Investigation Report.",
+        img: img2,
+      },
+      {
+        id: 3,
+        text: "Their presence provides emotional support and ensures the child feels safe during legal processes.",
+        img: img3,
+      },
+    ],
   },
-  'supervision': {
+  supervision: {
     title: "Supervision & Bail",
     steps: [
-      { id: 1, text: "If the child is released on bail, parents are responsible for their conduct and whereabouts.", img: img4 },
-      { id: 2, text: "They must ensure the child attends school/training and does not associate with negative influences.", img: img1 },
-      { id: 3, text: "Failure to supervise may lead to the child being sent to an Observation Home.", img: img2 },
-    ]
+      {
+        id: 1,
+        text: "If the child is released on bail, parents are responsible for their conduct and whereabouts.",
+        img: img4,
+      },
+      {
+        id: 2,
+        text: "They must ensure the child attends school/training and does not associate with negative influences.",
+        img: img1,
+      },
+      {
+        id: 3,
+        text: "Failure to supervise may lead to the child being sent to an Observation Home.",
+        img: img2,
+      },
+    ],
   },
-  'rehab': {
+  rehab: {
     title: "Role in Rehabilitation",
     steps: [
-      { id: 1, text: "Creating a supportive and non-judgmental home environment to aid reform.", img: img3 },
-      { id: 2, text: "Encouraging the child to participate in counseling and vocational activities.", img: img4 },
-      { id: 3, text: "Regularly communicating with the Probation Officer about the child's progress.", img: img1 },
-    ]
+      {
+        id: 1,
+        text: "Creating a supportive and non-judgmental home environment to aid reform.",
+        img: img3,
+      },
+      {
+        id: 2,
+        text: "Encouraging the child to participate in counseling and vocational activities.",
+        img: img4,
+      },
+      {
+        id: 3,
+        text: "Regularly communicating with the Probation Officer about the child's progress.",
+        img: img1,
+      },
+    ],
   },
-  'counseling': {
+  counseling: {
     title: "Family Counseling",
     steps: [
-      { id: 1, text: "Parents themselves may need to attend counseling sessions ordered by the JJB.", img: img2 },
-      { id: 2, text: "These sessions help resolve family conflicts that may have contributed to the child's behavior.", img: img3 },
-      { id: 3, text: "Learning positive parenting techniques to better guide the child's future.", img: img4 },
-    ]
-  }
+      {
+        id: 1,
+        text: "Parents themselves may need to attend counseling sessions ordered by the JJB.",
+        img: img2,
+      },
+      {
+        id: 2,
+        text: "These sessions help resolve family conflicts that may have contributed to the child's behavior.",
+        img: img3,
+      },
+      {
+        id: 3,
+        text: "Learning positive parenting techniques to better guide the child's future.",
+        img: img4,
+      },
+    ],
+  },
 };
 
 const CcwlParentsPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
   onBack,
   onHome,
 }) => {
-  // Use correct ID for CCL Parents
   const baseData = TOPIC_CONTENT["ccl-parents"] || TOPIC_CONTENT["default"];
 
   const data = {
@@ -103,7 +145,8 @@ const CcwlParentsPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
     `,
   };
 
-  const [activeTab, setActiveTab] = useState<keyof typeof PARENTS_DATA>('inquiry');
+  const [activeTab, setActiveTab] =
+    useState<keyof typeof PARENTS_DATA>("inquiry");
   const currentSteps = PARENTS_DATA[activeTab].steps;
 
   return (
@@ -117,7 +160,7 @@ const CcwlParentsPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
         }
       `}</style>
 
-      {/* --- 1. TOP BUTTONS --- */}
+      {/* 1. TOP BUTTONS */}
       <div className="w-full max-w-6xl mx-auto mt-0 mb-12 px-4">
         <div className="flex flex-wrap justify-center gap-4">
           {[
@@ -142,34 +185,33 @@ const CcwlParentsPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
 
         {/* Section Title Indicator */}
         <div className="text-center mt-12 mb-8">
-           <h3 className="font-poppins text-2xl md:text-3xl italic text-red-900 tracking-wide font-semibold drop-shadow-sm">
-             {PARENTS_DATA[activeTab].title}
-           </h3>
-           <div className="h-1 w-32 bg-red-600 mx-auto mt-3 rounded-full opacity-80"></div>
+          <h3 className="font-poppins text-2xl md:text-3xl italic text-red-900 tracking-wide font-semibold drop-shadow-sm">
+            {PARENTS_DATA[activeTab].title}
+          </h3>
+          <div className="h-1 w-32 bg-red-600 mx-auto mt-3 rounded-full opacity-80"></div>
         </div>
       </div>
 
-      {/* --- 2. ZIG-ZAG TIMELINE CONTENT --- */}
+      {/* 2. ZIG-ZAG TIMELINE CONTENT */}
       <div className="w-full max-w-6xl mx-auto px-6 pb-40">
-        
         {currentSteps.map((step, index) => {
           const isLeftAligned = index % 2 === 0;
           const isLast = index === currentSteps.length - 1;
 
           return (
             <div key={step.id} className="relative">
-              
               {/* Content Row */}
-              <div className={`flex flex-col md:flex-row items-center gap-10 md:gap-24 py-6 ${
-                !isLeftAligned ? 'md:flex-row-reverse' : ''
-              }`}>
-                
+              <div
+                className={`flex flex-col md:flex-row items-center gap-10 md:gap-24 py-6 ${
+                  !isLeftAligned ? "md:flex-row-reverse" : ""
+                }`}
+              >
                 {/* IMAGE SIDE */}
                 <div className="w-full md:w-1/2 flex justify-center relative z-10">
                   <div className="bg-white p-3 rounded-2xl shadow-xl transform hover:scale-105 transition-transform duration-500 border border-red-100 w-full max-w-[450px]">
-                    <img 
-                      src={step.img} 
-                      alt={`Step ${step.id}`} 
+                    <img
+                      src={step.img}
+                      alt={`Step ${step.id}`}
                       className="w-full h-auto rounded-xl object-cover border border-slate-100"
                     />
                   </div>
@@ -183,20 +225,18 @@ const CcwlParentsPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
                     </p>
                   </div>
                 </div>
-
               </div>
 
               {/* CONNECTING LINES */}
               {!isLast && (
-                <PathConnector direction={isLeftAligned ? 'left-to-right' : 'right-to-left'} />
+                <PathConnector
+                  direction={isLeftAligned ? "left-to-right" : "right-to-left"}
+                />
               )}
-
             </div>
           );
         })}
-
       </div>
-
     </ContentView>
   );
 };

@@ -12,7 +12,6 @@ import img3b from "../../assets/images/cwc/psop3b.png";
 import img4 from "../../assets/images/cwc/psop4.png";
 import img5 from "../../assets/images/cwc/psop5.png";
 
-// --- ANIMATED CONNECTOR ---
 const PathConnector: React.FC<{
   direction: "right-to-left" | "left-to-right" | "step4-to-5";
 }> = ({ direction }) => {
@@ -118,21 +117,21 @@ const CcwlPolicePage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
                 />
               </div>
               <div className="w-full md:w-1/2">
-                <h3 className="font-bold text-lg uppercase mb-2 font-poppins">
+                <h3 className="font-bold text-2xl uppercase mb-2 font-poppins">
                   1. IF A CHILD IS APPREHENDED
                 </h3>
-                <p className="text-sm mb-4 text-slate-700">
+                <p className="text-xl mb-4 text-slate-700">
                   If a person who appears to be a child is found in conflict
                   with the law, the special juvenile police unit or child
                   welfare police officer takes charge of the situation.
                 </p>
                 <div className="flex gap-4 mt-4">
-                  <div className="bg-blue-900 text-white p-3 text-[10px] md:text-xs rounded-lg shadow-lg w-1/2 leading-snug">
-                    *The police officer must be present in{" "}
+                  <div className="bg-blue-900 text-white p-4 text-[12px] md:text-base rounded-lg shadow-lg w-1/2 leading-snug">
+                    The police officer must be present in{" "}
                     <em>civilian clothing</em>.
                   </div>
-                  <div className="bg-blue-900 text-white p-3 text-[10px] md:text-xs rounded-lg shadow-lg w-1/2 leading-snug">
-                    *The child must <strong>not</strong> be placed in a police
+                  <div className="bg-blue-900 text-white p-4 text-[12px] md:text-base rounded-lg shadow-lg w-1/2 leading-snug">
+                    The child must <strong>not</strong> be placed in a police
                     lock-up or jail.
                   </div>
                 </div>
@@ -152,10 +151,10 @@ const CcwlPolicePage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
                 />
               </div>
               <div className="w-full md:w-1/2 text-right">
-                <h3 className="font-bold text-lg uppercase mb-2 font-poppins">
+                <h3 className="font-bold text-2xl uppercase mb-2 font-poppins">
                   2. PRODUCE BEFORE THE BOARD
                 </h3>
-                <p className="text-sm text-slate-700">
+                <p className="text-xl text-slate-700">
                   The <span className="text-red-600 font-bold">SJPU/CWPO</span>{" "}
                   must bring the child before the Juvenile Justice Board without
                   delay within 24 hours of apprehension (time spent travelling
@@ -182,13 +181,13 @@ const CcwlPolicePage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
                 />
               </div>
               <div className="w-full md:w-1/2">
-                <h3 className="font-bold text-lg uppercase mb-2 font-poppins">
+                <h3 className="font-bold text-2xl uppercase mb-2 font-poppins">
                   3. INFORMING FAMILY AND PROBATION OFFICER
                 </h3>
-                <p className="text-xs mb-2 text-slate-600">
+                <p className="text-xl mb-2 text-slate-600">
                   As soon as possible after apprehension the SJPU/CWPO must:
                 </p>
-                <ul className="list-disc pl-5 text-sm space-y-2 text-slate-700">
+                <ul className="list-disc pl-5 text-xl space-y-2 text-slate-700">
                   <li>
                     Inform the parent/guardian and ask them to be present when
                     the child is produced before the Board.
@@ -199,7 +198,7 @@ const CcwlPolicePage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
                     (SIR).
                   </li>
                 </ul>
-                <div className="bg-blue-900 text-white p-4 text-xs rounded-lg shadow-lg mt-6 w-3/4">
+                <div className="bg-blue-900 text-white p-4 text-base rounded-lg shadow-lg mt-6 w-3/4">
                   *The SIR should be prepared and submitted to the Board within
                   two weeks.
                 </div>
@@ -211,8 +210,8 @@ const CcwlPolicePage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
           {/* STEP 4 */}
           <div className="relative mt-8">
             <div className="flex flex-col md:flex-row items-start gap-6 py-6">
-              <div className="w-full md:w-1/3 text-xs leading-relaxed pr-2 text-slate-800">
-                <h3 className="font-bold text-lg uppercase mb-2 font-poppins">
+              <div className="w-full md:w-1/3 text-xl leading-relaxed pr-2 text-slate-800">
+                <h3 className="font-bold text-2xl uppercase mb-2 font-poppins">
                   4. INITIAL DECISION: RELEASE OR CUSTODY
                 </h3>
                 <ul className="list-disc pl-4 space-y-2">
@@ -234,8 +233,8 @@ const CcwlPolicePage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
                 </p>
               </div>
 
-              <div className="w-full md:w-1/3 text-xs leading-relaxed text-slate-800">
-                <h3 className="font-bold text-lg uppercase mb-2 font-poppins">
+              <div className="w-full md:w-1/3 text-xl leading-relaxed text-slate-800">
+                <h3 className="font-bold text-2xl uppercase mb-2 font-poppins">
                   4.A IF NOT RELEASED IMMEDIATELY
                 </h3>
                 <ul className="list-disc pl-4 space-y-2">
@@ -251,7 +250,7 @@ const CcwlPolicePage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
                   </li>
                 </ul>
 
-                <h3 className="font-bold text-lg uppercase mb-2 font-poppins mt-4">
+                <h3 className="font-bold text-2xl uppercase mb-2 font-poppins mt-4">
                   4.B IF BAIL CONDITIONS ARE NOT MET
                 </h3>
                 <ul className="list-disc pl-4 space-y-2">
@@ -263,11 +262,11 @@ const CcwlPolicePage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
                 </ul>
               </div>
 
-              <div className="w-full md:w-1/3 flex justify-center items-center">
+              <div className="w-full md:w-1/2 flex justify-center">
                 <img
                   src={img4}
-                  alt="Final Order"
-                  className="w-full max-w-sm border-2 border-black rounded-xl"
+                  alt="Apprehended"
+                  className="w-full max-w-md border-2 border-black rounded-xl"
                 />
               </div>
             </div>
@@ -277,19 +276,20 @@ const CcwlPolicePage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
 
           {/* STEP 5 */}
           <div className="flex justify-end mt-16 pr-0 md:pr-4">
-            <div className="w-full md:w-2/3 flex flex-col md:flex-row items-center gap-6">
-              <div className="w-full md:w-1/2">
+            <div className="flex flex-col md:flex-row items-start gap-10">
+              <div className="w-full md:w-1/2 flex justify-center">
                 <img
                   src={img5}
-                  alt="Custody"
-                  className="w-full border-2 border-black rounded-xl"
+                  alt="Apprehended"
+                  className="w-full max-w-md border-2 border-black rounded-xl"
                 />
               </div>
+
               <div className="w-full md:w-1/2 p-6">
-                <h3 className="font-bold text-lg uppercase mb-2 font-poppins">
+                <h3 className="font-bold text-2xl uppercase mb-2 font-poppins">
                   5. PERSON GIVEN CHARGE OF THE CHILD
                 </h3>
-                <ul className="list-disc pl-5 text-xs space-y-2 text-slate-700">
+                <ul className="list-disc pl-5 text-xl space-y-2 text-slate-700">
                   <li>
                     Any person or organisation given custody by the Board is
                     responsible for the child’s maintenance and welfare while

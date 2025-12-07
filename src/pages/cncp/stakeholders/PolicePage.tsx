@@ -5,7 +5,6 @@ import { TOPIC_CONTENT } from "../../../constants";
 import policeBg from "../../../assets/images/police-bg.png";
 import guideImage from "../../../assets/images/lpolice.png";
 
-
 const PathConnector: React.FC<{
   direction: "right-to-left" | "left-to-right" | "step4-to-5";
 }> = ({ direction }) => {
@@ -16,7 +15,7 @@ const PathConnector: React.FC<{
   } else if (direction === "right-to-left") {
     pathData = "M 75 0 V 50 H 25 V 100";
   } else if (direction === "step4-to-5") {
-    pathData = "M 33 0 V 50 H 70 V 100";  
+    pathData = "M 33 0 V 50 H 70 V 100";
   }
 
   return (
@@ -45,8 +44,7 @@ const PolicePage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
   onBack,
   onHome,
 }) => {
-  const baseData =
-    TOPIC_CONTENT["cncp-stk-police"] || TOPIC_CONTENT["default"];
+  const baseData = TOPIC_CONTENT["cncp-stk-police"] || TOPIC_CONTENT["default"];
 
   const data = {
     ...baseData,

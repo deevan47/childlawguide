@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import ContentView from "../../components/ContentView";
 import { TOPIC_CONTENT } from "../../constants";
 
-// Assets
 import homesBg from "../../assets/images/homesbg.png";
 import homesMascot from "../../assets/images/homes.png";
 
-// Placeholder timeline images (Reuse existing or replace with specific ones)
-import img1 from "../../assets/images/cwc/1img1.png";
-import img2 from "../../assets/images/cwc/1img2.png";
-import img3 from "../../assets/images/cwc/1img3.png";
-import img4 from "../../assets/images/cwc/1img4.png";
+import img1 from "../../assets/images/cwc/hco1.png";
+import img2 from "../../assets/images/cwc/hco2.png";
+import img3 from "../../assets/images/cwc/hco3.png";
+import img4 from "../../assets/images/cwc/hco4.png";
+import img5 from "../../assets/images/cwc/hco5.png";
+import img6 from "../../assets/images/cwc/hco6.png";
+import img7 from "../../assets/images/cwc/hco7.png";
 
-// --- STRAIGHT LINE ANIMATED CONNECTOR ---
 const PathConnector: React.FC<{
   direction: "right-to-left" | "left-to-right";
 }> = ({ direction }) => {
@@ -27,79 +27,96 @@ const PathConnector: React.FC<{
         className="absolute inset-0 w-full h-full"
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
-      >
-        <path
-          d={pathData}
-          fill="none"
-          stroke="#000"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeDasharray="0, 12"
-          vectorEffect="non-scaling-stroke"
-          className="animate-travel"
-        />
-      </svg>
+      ></svg>
     </div>
   );
 };
 
-// --- DATA STRUCTURE FOR HOMES ---
-const HOMES_DATA = {
-  'observation': {
-    title: "Observation Homes",
-    steps: [
-      { id: 1, text: "Established in every district for the temporary reception of any child alleged to be in conflict with law.", img: img1 },
-      { id: 2, text: "Children stay here only while their inquiry is pending before the Juvenile Justice Board (JJB).", img: img2 },
-      { id: 3, text: "Children are segregated according to age, gender, and the nature of the offense to ensure safety.", img: img3 },
-    ]
+const OBSERVATION_STEPS = [
+  {
+    id: 1,
+    title: "Segregation & Accommodation",
+    points: [
+      "Separate premises for boys and girls.",
+      "Classification by age-groups (e.g., 7-11, 12-16, 16-18) and by nature of offence; consider physical/mental status.",
+      "Child-friendly environment: the institution shall not look like a jail or lock-up.",
+    ],
+    img: img1,
   },
-  'special': {
-    title: "Special Homes",
-    steps: [
-      { id: 1, text: "For children who have been found to have committed an offense and are placed there by order of the JJB.", img: img4 },
-      { id: 2, text: "Focuses on long-term rehabilitation and reformation for a period usually not exceeding 3 years.", img: img1 },
-      { id: 3, text: "Provides individualized reform plans including counseling, education, and skill development.", img: img2 },
-    ]
+  {
+    id: 2,
+    title: "Physical Infrastructure & Environment",
+    points: [
+      "Basic amenities for living: adequate sleeping, bathing, recreation, education space.",
+      "Accommodation norms for number of children (building size, beds, dorms) as per the rules.",
+    ],
+    img: img2,
   },
-  'ff': {
-    title: "Fit Facility",
-    steps: [
-      { id: 1, text: "Designated for children between 16-18 years accused of heinous crimes.", img: img3 },
-      { id: 2, text: "Used when the JJB determines that staying in a Special Home is not in the interest of the child or others.", img: img4 },
-      { id: 3, text: "Has higher security but still adheres to child rights and protection standards.", img: img1 },
-    ]
+  {
+    id: 3,
+    title: "Registration & Monitoring",
+    points: [
+      "The Home must be registered/recognised under the Act and Rules.",
+      "Management Committee must be in place to oversee the institution and monitor children’s progress.",
+    ],
+    img: img3,
   },
-  'ps': {
-    title: "Place of Safety",
-    steps: [
-      { id: 1, text: "Regular medical check-ups and mental health counseling support.", img: img2 },
-      { id: 2, text: "Formal education and vocational training to aid future livelihoods.", img: img3 },
-      { id: 3, text: "Recreational facilities and balanced nutrition for holistic development.", img: img4 },
-    ]
-  }
-};
+  {
+    id: 4,
+    title: "Programme / Care Plan for Each Child",
+    points: [
+      "An Individual Care Plan (ICP) must be prepared for each child: covering health, nutrition, education, training, psychological needs, social reintegration.",
+      "Services like counselling, skill development, mental health care, recreation must be provided.",
+      "Records maintained: child’s entry, photo identity, case history.",
+    ],
+    img: img4,
+  },
+  {
+    id: 5,
+    title: "Staffing and Children’s Rights",
+    points: [
+      "Qualified staff (social workers, counsellors, educators) experienced in working with children.",
+      "Child’s rights: dignity, no abuse, privacy, hearing of child’s views.",
+    ],
+    img: img5,
+  },
+  {
+    id: 6,
+    title: "Safety & Protection",
+    points: [
+      "No handcuffs/fetters; no solitary/jail-style confinement.",
+      "Mechanisms for grievance redressal, safe complaint process.",
+      "Safe restoration: children should be restored to family, foster, or other community context when possible.",
+    ],
+    img: img6,
+  },
+  {
+    id: 7,
+    title: "Supervision & After-Care",
+    points: [
+      "Follow-up after the child leaves the Home or is released — supervision, reintegration.",
+      "Regular inspections, audits to ensure quality of care.",
+    ],
+    img: img7,
+  },
+];
 
 const CcwlHomesPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
   onBack,
   onHome,
 }) => {
-  // Use correct ID for CCL Homes
   const baseData = TOPIC_CONTENT["ccl-homes"] || TOPIC_CONTENT["default"];
-
   const data = {
     ...baseData,
     title: "HOMES FOR CHILDREN",
     subtitle: "Children in Conflict with Law",
     bgImage: homesBg,
     characterImage: homesMascot,
-    content: `
-      <p>The Juvenile Justice Act, 2015, mandates specific government-regulated Child Care Institutions (CCIs) for Children in Conflict with Law (CCL), focusing on rehabilitation, not punishment. These include Observation Homes, for temporary placement during the Juvenile Justice Board (JJB) inquiry, and Special Homes, where the JJB places a child for a fixed period of reform and rehabilitation. Both must provide essential services like education, vocational training, and counseling under government standards to ensure the child's well-being and successful reintegration into society.
-      </p>
-    `,
   };
 
-  const [activeTab, setActiveTab] = useState<keyof typeof HOMES_DATA>('observation');
-  const currentSteps = HOMES_DATA[activeTab].steps;
+  const [activeTab, setActiveTab] = useState<
+    "observation" | "special" | "ff" | "ps"
+  >("observation");
 
   return (
     <ContentView data={data} onBack={onBack} onHome={onHome}>
@@ -110,9 +127,31 @@ const CcwlHomesPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
         .animate-travel {
           animation: travelDash 1s linear infinite;
         }
+        .step-title {
+          font-weight: bold;
+          font-size: 1.25rem;
+          margin-bottom: 0.5rem;
+          color: #1f2937;
+        }
+        .step-points {
+          padding-left: 1.5rem;
+          margin: 0;
+          list-style-type: disc;
+        }
+        .step-points li {
+          margin-bottom: 0.4rem;
+          font-weight: 500;
+          color: #4b5563;
+        }
+        .coming-soon {
+          text-align: center;
+          font-size: 1.5rem;
+          color: #2c2222ff;
+          font-weight: bold;
+          margin-top: 3rem;
+        }
       `}</style>
 
-      {/* --- 1. TOP BUTTONS --- */}
       <div className="w-full max-w-6xl mx-auto mt-0 mb-12 px-4">
         <div className="flex flex-wrap justify-center gap-4">
           {[
@@ -123,7 +162,9 @@ const CcwlHomesPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
           ].map((btn) => (
             <button
               key={btn.id}
-              onClick={() => setActiveTab(btn.id as keyof typeof HOMES_DATA)}
+              onClick={() =>
+                setActiveTab(btn.id as "observation" | "special" | "ff" | "ps")
+              }
               className={`px-8 py-3 rounded-full font-bold text-sm md:text-base transition-all shadow-lg border-2 ${
                 activeTab === btn.id
                   ? "bg-red-800 text-white border-red-900"
@@ -135,63 +176,69 @@ const CcwlHomesPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
           ))}
         </div>
 
-        {/* Section Title Indicator */}
         <div className="text-center mt-12 mb-8">
-           <h3 className="font-poppins text-2xl md:text-3xl italic text-red-900 tracking-wide font-semibold drop-shadow-sm">
-             {HOMES_DATA[activeTab].title}
-           </h3>
-           <div className="h-1 w-32 bg-red-600 mx-auto mt-3 rounded-full opacity-80"></div>
+          <h3 className="font-poppins text-2xl md:text-3xl italic text-red-900 tracking-wide font-semibold drop-shadow-sm">
+            {activeTab === "observation"
+              ? "Observation Homes"
+              : activeTab === "special"
+              ? "Special Homes"
+              : activeTab === "ff"
+              ? "Fit Facility"
+              : "Place of Safety"}
+          </h3>
+          <div className="h-1 w-32 bg-red-600 mx-auto mt-3 rounded-full opacity-80"></div>
         </div>
       </div>
 
-      {/* --- 2. ZIG-ZAG TIMELINE CONTENT --- */}
       <div className="w-full max-w-6xl mx-auto px-6 pb-40">
-        
-        {currentSteps.map((step, index) => {
-          const isLeftAligned = index % 2 === 0;
-          const isLast = index === currentSteps.length - 1;
+        {activeTab === "observation" ? (
+          OBSERVATION_STEPS.map((step, index) => {
+            const isLeftAligned = index % 2 === 0;
+            const isLast = index === OBSERVATION_STEPS.length - 1;
 
-          return (
-            <div key={step.id} className="relative">
-              
-              {/* Content Row */}
-              <div className={`flex flex-col md:flex-row items-center gap-10 md:gap-24 py-6 ${
-                !isLeftAligned ? 'md:flex-row-reverse' : ''
-              }`}>
-                
-                {/* IMAGE SIDE */}
-                <div className="w-full md:w-1/2 flex justify-center relative z-10">
-                  <div className="bg-white p-3 rounded-2xl shadow-xl transform hover:scale-105 transition-transform duration-500 border border-red-100 w-full max-w-[450px]">
-                    <img 
-                      src={step.img} 
-                      alt={`Step ${step.id}`} 
-                      className="w-full h-auto rounded-xl object-cover border border-slate-100"
-                    />
+            return (
+              <div key={step.id} className="relative">
+                <div
+                  className={`flex flex-col md:flex-row items-center gap-10 md:gap-24 py-6 ${
+                    !isLeftAligned ? "md:flex-row-reverse" : ""
+                  }`}
+                >
+                  <div className="w-full md:w-1/2 flex justify-center relative z-10">
+                    <div className="bg-white p-3 rounded-2xl shadow-xl transform hover:scale-105 transition-transform duration-500">
+                      <img
+                        src={step.img}
+                        alt={`Step ${step.id}`}
+                        className="w-full h-auto rounded-xl object-cover"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="w-full md:w-1/2 text-center md:text-left">
+                    <div className="step-box">
+                      <div className="step-title">{step.title}</div>
+                      <ul className="step-points">
+                        {step.points.map((point, i) => (
+                          <li key={i}>{point}</li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
 
-                {/* TEXT SIDE */}
-                <div className="w-full md:w-1/2 text-center md:text-left">
-                  <div className="bg-white p-8 rounded-3xl shadow-lg border border-red-50 relative">
-                    <p className="font-poppins text-lg text-slate-700 leading-loose font-medium">
-                      {step.text}
-                    </p>
-                  </div>
-                </div>
-
+                {!isLast && (
+                  <PathConnector
+                    direction={
+                      isLeftAligned ? "left-to-right" : "right-to-left"
+                    }
+                  />
+                )}
               </div>
-
-              {/* CONNECTING LINES */}
-              {!isLast && (
-                <PathConnector direction={isLeftAligned ? 'left-to-right' : 'right-to-left'} />
-              )}
-
-            </div>
-          );
-        })}
-
+            );
+          })
+        ) : (
+          <div className="coming-soon">Content Coming Soon</div>
+        )}
       </div>
-
     </ContentView>
   );
 };

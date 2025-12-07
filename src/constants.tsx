@@ -12,7 +12,6 @@ export const ASSETS = {
 };
 
 export const TOPIC_CONTENT: Record<string, TopicData> = {
-  // 1. STAKEHOLDERS
   "cncp-stk-police": {
     id: "cncp-stk-police",
     title: "POLICE OFFICERS",
@@ -23,7 +22,6 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     content: `<p>Police officers, particularly those in Special Juvenile Police Units (SJPUs) and Child Welfare Police Officers (CWPOs), play a crucial role in the child welfare system. They are often the first point of contact for children in distress.</p>`,
   },
 
-  // 2. ISSUES
   "cncp-labour": {
     id: "cncp-labour",
     title: "CHILD LABOUR",
@@ -192,7 +190,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: "Institutions for CCL",
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
-    content: `<p>Observation Homes are for the temporary stay of children during inquiry. Special Homes are for children found to have committed an offense and require long-term rehabilitation.</p>`,
+    content: `<p>The Juvenile Justice Act, 2015, mandates specific government-regulated Child Care Institutions (CCIs) for Children in Conflict with Law (CCL), focusing on rehabilitation, not punishment. These include Observation Homes, for temporary placement during the Juvenile Justice Board (JJB) inquiry, and Special Homes, where the JJB places a child for a fixed period of reform and rehabilitation. Both must provide essential services like education, vocational training, and counseling under government standards to ensure the child's well-being and successful reintegration into society.</p>`,
   },
 
   "ccl-parents": {
@@ -222,7 +220,6 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     content: `<p>The Protection of Children from Sexual Offences (POCSO) Act provides a legal framework to protect children from sexual assault, sexual harassment, and pornography. It mandates child-friendly procedures.</p>`,
   },
 
-  // FALLBACK
   default: {
     id: "default",
     title: "SELECT A TOPIC",
@@ -281,7 +278,7 @@ export const MAP_NODES: ExtendedNodePosition[] = [
   {
     id: "root",
     x: 80,
-    y: 50,
+    y: 45,
     level: 0,
     label: "CHILD WELFARE SYSTEM",
     color: "black",
@@ -297,8 +294,8 @@ export const MAP_NODES: ExtendedNodePosition[] = [
   },
   {
     id: "cat-pocso",
-    x: 90,
-    y: 85,
+    x: 100,
+    y: 78,
     level: 1,
     label: "POCSO ACT",
     parentId: "root",
@@ -307,7 +304,7 @@ export const MAP_NODES: ExtendedNodePosition[] = [
   {
     id: "cat-cncp",
     x: 38,
-    y: 40,
+    y: 44,
     level: 1,
     label: "NEED OF CARE (CNCP)",
     parentId: "root",
@@ -450,8 +447,8 @@ export const MAP_NODES: ExtendedNodePosition[] = [
   },
   {
     id: "cat-ccl",
-    x: 120,
-    y: 40,
+    x: 130,
+    y: 45,
     level: 1,
     label: "CONFLICT w/ LAW (CCL)",
     parentId: "root",

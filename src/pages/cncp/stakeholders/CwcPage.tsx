@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import ContentView from "../../../components/ContentView";
 import { TOPIC_CONTENT } from "../../../constants";
 
-// Assets
 import policeBg from "../../../assets/images/cwc-bg.png";
 import mascot from "../../../assets/images/commitee.png";
 
-// --- IMAGE IMPORTS ---
 import img1_1 from "../../../assets/images/cwc/1img1.png";
 import img1_2 from "../../../assets/images/cwc/1img2.png";
 import img1_3 from "../../../assets/images/cwc/1img3.png";
@@ -27,7 +25,6 @@ import img4_2 from "../../../assets/images/cwc/4img2.png";
 import img4_3 from "../../../assets/images/cwc/4img3.png";
 import img4_4 from "../../../assets/images/cwc/4img4.png";
 
-// --- DATA STRUCTURE ---
 const PAGES_DATA = {
   "working-directly": {
     title: "Working Directly with Children",
@@ -134,15 +131,13 @@ This requires at least three members to agree.`,
   },
 };
 
-// --- PATH CONNECTOR (Straight Lines) ---
 const PathConnector: React.FC<{
   direction: "right-to-left" | "left-to-right";
 }> = ({ direction }) => {
-  // Logic: Go Down (50%), Go Across, Go Down (50%)
   const pathData =
     direction === "left-to-right"
-      ? "M 25 0 V 50 H 75 V 100" // Start Left(25), Down, Right(to 75), Down
-      : "M 75 0 V 50 H 25 V 100"; // Start Right(75), Down, Left(to 25), Down
+      ? "M 25 0 V 50 H 75 V 100"
+      : "M 75 0 V 50 H 25 V 100";
 
   return (
     <div className="hidden md:block w-full h-32 relative overflow-visible pointer-events-none z-0 -my-4">
@@ -151,16 +146,13 @@ const PathConnector: React.FC<{
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
       >
-        {/* Background Track (Faint) */}
-
-        {/* Animated Dashed Line (Dots) */}
         <path
           d={pathData}
           fill="none"
           stroke="#000000ff"
           strokeWidth="3"
           strokeLinecap="round"
-          strokeDasharray="7, 15" // Creates dots with spacing
+          strokeDasharray="7, 15"
           vectorEffect="non-scaling-stroke"
           className="animate-travel"
         />
@@ -206,11 +198,8 @@ const CwcPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
         }
       `}</style>
 
-      {/* --- 1. TOP NAVIGATION --- */}
       <div className="w-full max-w-5xl mx-auto mt-0 mb-12 relative z-30 px-4">
-        {/* Main Tabs */}
         <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-8">
-          {/* ROLES BUTTON */}
           <div className="relative group">
             <button
               onClick={() => setActiveMainTab("roles")}
@@ -223,12 +212,17 @@ const CwcPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
               Roles and Responsibilities
             </button>
 
-            {/* Sub-menu */}
             <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 w-[90vw] md:w-[650px] z-50">
               <div className="bg-white border-2 border-red-100 rounded-2xl p-2 shadow-2xl flex flex-wrap md:flex-nowrap justify-between gap-2">
                 {[
-                  { id: "working-directly", label: "Working directly with Children" },
-                  { id: "investigations", label: "Investigations and Inspections" },
+                  {
+                    id: "working-directly",
+                    label: "Working directly with Children",
+                  },
+                  {
+                    id: "investigations",
+                    label: "Investigations and Inspections",
+                  },
                   { id: "legal", label: "Legal and Family Responsibilities" },
                   { id: "collaborative", label: "Collaborative Roles" },
                 ].map((tab) => (
@@ -252,7 +246,6 @@ const CwcPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
             </div>
           </div>
 
-          {/* GUIDELINES BUTTON */}
           <button
             onClick={() => setActiveMainTab("guidelines")}
             className={`px-6 py-3 md:px-8 md:py-3 rounded-full font-bold text-sm md:text-lg transition-all shadow-lg border-2 ${
@@ -265,7 +258,6 @@ const CwcPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
           </button>
         </div>
 
-        {/* Title Indicator */}
         {activeMainTab === "roles" && (
           <div className="text-center mb-16">
             <h3 className="font-poppins text-xl md:text-3xl italic text-red-800 tracking-wide drop-shadow-sm font-semibold">
@@ -276,7 +268,6 @@ const CwcPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
         )}
       </div>
 
-      {/* --- 2. ZIG-ZAG CONTENT --- */}
       {activeMainTab === "roles" && (
         <div className="w-full max-w-6xl mx-auto px-6 pb-40">
           {currentSteps.map((step, index) => {
@@ -285,13 +276,11 @@ const CwcPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
 
             return (
               <div key={step.id} className="relative">
-                {/* Content Row */}
                 <div
                   className={`flex flex-col md:flex-row items-center gap-10 md:gap-24 py-6 ${
                     !isLeftAligned ? "md:flex-row-reverse" : ""
                   }`}
                 >
-                  {/* IMAGE SIDE (Larger Images) */}
                   <div className="w-full md:w-1/2 flex justify-center relative z-10">
                     <div className="bg-white p-3 rounded-2xl shadow-xl transform hover:scale-105 transition-transform duration-500 border border-red-100 w-full max-w-[450px]">
                       <img
@@ -302,7 +291,6 @@ const CwcPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
                     </div>
                   </div>
 
-                  {/* TEXT SIDE (Clean, No Numbers) */}
                   <div className="w-full md:w-1/2 text-center md:text-left">
                     <div className="bg-white p-8 rounded-2xl shadow-lg border border-red-50">
                       <p className="font-poppins text-lg md:text-xl text-slate-700 leading-loose font-medium">
@@ -312,7 +300,6 @@ const CwcPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
                   </div>
                 </div>
 
-                {/* STRAIGHT PATH CONNECTOR */}
                 {!isLast && (
                   <PathConnector
                     direction={
@@ -326,7 +313,6 @@ const CwcPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
         </div>
       )}
 
-      {/* Guidelines Tab Placeholder */}
       {activeMainTab === "guidelines" && (
         <div className="w-full max-w-4xl mx-auto px-6 py-20 text-center">
           <div className="bg-white border border-red-100 rounded-3xl p-10 shadow-xl">

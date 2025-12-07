@@ -1,8 +1,8 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
-import { MAP_NODES } from "../constants"; 
+import { MAP_NODES } from "../constants";
 import { ExtendedNodePosition } from "../types";
-import webBackground from "../assets/images/web.jpeg";
+import webBackground from "../assets/images/web.png";
 
 interface WebMapViewProps {
   onTopicSelect: (id: string, x?: number, y?: number) => void;
@@ -100,13 +100,13 @@ const WebMapView: React.FC<WebMapViewProps> = ({
       const calculatedWidth = Math.max(minWidth, charWidth + 6);
 
       let bgClass = "";
-      let height = 7;
-      let fontSize = 1.4;
+      let height = 8;
+      let fontSize = 1.3;
 
       if (node.color === "black") {
-        bgClass = "bg-black shadow-2xl border-2 border-gray-700";
+        bgClass = "bg-black shadow-3xl";
         height = 10;
-        fontSize = 2.0;
+        fontSize = 1.8;
       } else if (node.color === "blue") {
         bgClass = "bg-[#1e40af] shadow-xl border-t border-blue-400";
         height = 8.5;
@@ -173,7 +173,9 @@ const WebMapView: React.FC<WebMapViewProps> = ({
         viewBox="0 0 160 100"
         preserveAspectRatio="xMidYMid meet"
       >
-        <g className="transition-all duration-300 ease-out">{renderConnections()}</g>
+        <g className="transition-all duration-300 ease-out">
+          {renderConnections()}
+        </g>
         <g className="transition-all duration-300 ease-out">{renderNodes()}</g>
       </svg>
     </div>

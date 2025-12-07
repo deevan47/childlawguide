@@ -1,15 +1,24 @@
-import React from 'react';
-import ContentView from '../../components/ContentView';
-import { TOPIC_CONTENT } from '../../constants';
+import React from "react";
+import ContentView from "../../components/ContentView";
+import { TOPIC_CONTENT } from "../../constants";
+import ConstImg from "../../assets/images/const.png"; 
 
-const OrphansPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({ onBack, onHome }) => {
-  const data = { ...TOPIC_CONTENT['cncp-orphans'], subtitle: 'Children in Need of Care and Protection' };
-  
+
+const OrphansPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
+  onBack,
+  onHome,
+}) => {
+  const data = {
+    ...TOPIC_CONTENT["cncp-orphans"],
+    subtitle: "Children in Need of Care and Protection",
+    characterImage: ConstImg,
+  };
+
   return (
     <ContentView data={data} onBack={onBack} onHome={onHome}>
-      <p>Orphaned children have no living parents or willing guardians. They are the primary responsibility of the state.</p>
-      <h3 className="text-xl font-bold text-white mt-6 mb-2">Adoption</h3>
-      <p>CARA (Central Adoption Resource Authority) facilitates the legal adoption process to find a loving family for every orphan.</p>
+      <h1 style={{ fontSize: "2.5rem", fontWeight: "bold" }}>
+        Content Coming Soon
+      </h1>
     </ContentView>
   );
 };

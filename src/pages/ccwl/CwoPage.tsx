@@ -1,17 +1,13 @@
 import React, { useState } from "react";
 import ContentView from "../../components/ContentView";
 import { TOPIC_CONTENT } from "../../constants";
-
-// Assets
 import cwoBg from "../../assets/images/cwobg.png";
 import cwoMascot from "../../assets/images/welfare.png";
-
 import img1 from "../../assets/images/cwc/1img1.png";
 import img2 from "../../assets/images/cwc/1img2.png";
 import img3 from "../../assets/images/cwc/1img3.png";
 import img4 from "../../assets/images/cwc/1img4.png";
 
-// --- STRAIGHT LINE ANIMATED CONNECTOR ---
 const PathConnector: React.FC<{
   direction: "right-to-left" | "left-to-right";
 }> = ({ direction }) => {
@@ -42,7 +38,7 @@ const PathConnector: React.FC<{
   );
 };
 
-// --- DATA STRUCTURE FOR CWO ---
+// DATA STRUCTURE FOR CWO
 const CWO_DATA = {
   sop: {
     title: "Standard Operating Procedure",
@@ -158,7 +154,7 @@ const CwoPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
         }
       `}</style>
 
-      {/* --- 1. TOP BUTTONS --- */}
+      {/* 1. TOP BUTTONS */}
       <div className="w-full max-w-6xl mx-auto mt-0 mb-12 px-4">
         <div className="flex flex-wrap justify-center gap-4">
           {[
@@ -190,7 +186,7 @@ const CwoPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
         </div>
       </div>
 
-      {/* --- 2. ZIG-ZAG TIMELINE CONTENT --- */}
+      {/* 2. ZIG-ZAG TIMELINE CONTENT */}
       <div className="w-full max-w-6xl mx-auto px-6 pb-40">
         {currentSteps.map((step, index) => {
           const isLeftAligned = index % 2 === 0;

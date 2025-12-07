@@ -1,4 +1,4 @@
-export type ViewState = 'home' | 'map' | 'content';
+export type ViewState = "home" | "map" | "content";
 
 export interface TopicData {
   id: string;
@@ -6,12 +6,11 @@ export interface TopicData {
   subtitle?: string;
   description?: string;
   category?: string;
-  
-  // Visual Assets
-  bgImage?: string;       
+
+  bgImage?: string;
   characterImage?: string;
-  
-  content: string; // HTML string
+
+  content: string;
 }
 
 export interface NodePosition {
@@ -23,7 +22,6 @@ export interface NodePosition {
   parentId?: string;
 }
 
-// --- ADDED THIS INTERFACE ---
 export interface ExtendedNodePosition extends NodePosition {
   color: string;
 }

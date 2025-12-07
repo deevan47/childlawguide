@@ -1,16 +1,26 @@
-import React from 'react';
-import ContentView from '../../components/ContentView';
-import { TOPIC_CONTENT } from '../../constants';
+import React from "react";
+import ContentView from "../../components/ContentView";
+import { TOPIC_CONTENT } from "../../constants";
+import ConstImg from "../../assets/images/const.png"; 
 
-const ChildrenStreetPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({ onBack, onHome }) => {
-  const data = { ...TOPIC_CONTENT['cncp-streets'], subtitle: 'Children in Need of Care and Protection' };
-  
+const ChildrenStreetPage: React.FC<{
+  onBack: () => void;
+  onHome: () => void;
+}> = ({ onBack, onHome }) => {
+  const data = {
+    ...TOPIC_CONTENT["cncp-streets"],
+    subtitle: "Children in Need of Care and Protection",
+    characterImage: ConstImg, // <-- fixed typo
+  };
+
   return (
     <ContentView data={data} onBack={onBack} onHome={onHome}>
-      <p>Children in street situations live alone or with families on the streets. They are deprived of shelter, education, and healthcare.</p>
-      <h3 className="text-xl font-bold text-white mt-6 mb-2">Intervention</h3>
-      <p>Standard Operating Procedures (SOP 2.0) by the NCPCR mandate immediate identification and rescue, ensuring they are linked to government schemes.</p>
+      <h1 style={{ fontSize: "2.5rem", fontWeight: "bold" }}>
+        Content Coming Soon
+      </h1>
+
     </ContentView>
   );
 };
+
 export default ChildrenStreetPage;

@@ -121,7 +121,9 @@ const Ngospage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
                   1. IF A CHILD IS APPREHENDED
                 </h3>
                 <p className="text-sm mb-4">
-                  If a person who appears to be a child is found in conflict with the law, the special juvenile police unit or child welfare police officer takes charge of the situation.
+                  If a person who appears to be a child is found in conflict
+                  with the law, the special juvenile police unit or child
+                  welfare police officer takes charge of the situation.
                 </p>
 
                 <div className="flex gap-4 mt-4">
@@ -156,7 +158,9 @@ const Ngospage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
                 </h3>
                 <p className="text-sm">
                   The <span className="text-red-600 font-bold">SJPU/CWPO</span>{" "}
-                  must bring the child before the Juvenile Justice Board without delay within 24 hours of apprehension (time spent travelling is excluded).
+                  must bring the child before the Juvenile Justice Board without
+                  delay within 24 hours of apprehension (time spent travelling
+                  is excluded).
                 </p>
               </div>
             </div>
@@ -187,9 +191,15 @@ const Ngospage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
 
                 <ul className="list-disc pl-5 text-sm space-y-2">
                   As soon as possible after apprehension the SJPU/CWPO must:
-                  <li><strong>Inform the parent/guardian</strong> (if they can be found) and ask them to be present when the child is produced before the Board.</li>
                   <li>
-                    <strong>Inform the probation officer</strong> (or if none available, a Child Welfare Officer) to prepare a Social Investigation Report (SIR) about the child’s background.
+                    <strong>Inform the parent/guardian</strong> (if they can be
+                    found) and ask them to be present when the child is produced
+                    before the Board.
+                  </li>
+                  <li>
+                    <strong>Inform the probation officer</strong> (or if none
+                    available, a Child Welfare Officer) to prepare a Social
+                    Investigation Report (SIR) about the child’s background.
                   </li>
                 </ul>
 
@@ -212,18 +222,30 @@ const Ngospage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
                 </h3>
                 <ul className="list-disc pl-4 space-y-2">
                   <li>
-                    The officer-in-charge or the Board should release the child on bail (with or without surety) or
-                  </li>                  <li>
-                    Place the child under supervision of a probation officer or under the care of a fit person (for rehabilitation), unless there are reasonable grounds to believe that release would expose the child to criminals, danger, or defeat justice.
+                    The officer-in-charge or the Board should release the child
+                    on bail (with or without surety) or
+                  </li>{" "}
+                  <li>
+                    Place the child under supervision of a probation officer or
+                    under the care of a fit person (for rehabilitation), unless
+                    there are reasonable grounds to believe that release would
+                    expose the child to criminals, danger, or defeat justice.
                   </li>
-If the officer/Board refuses bail, they must record the reasons in writing.
+                  If the officer/Board refuses bail, they must record the
+                  reasons in writing.
                 </ul>
               </div>
 
               <div className="w-full md:w-1/3 text-xs leading-relaxed border-l-2 border-dashed border-gray-300 pl-4">
                 <h3 className="font-bold text-sm mb-2 font-poppins">
-                  4.A If the officer-in-charge refuses to release, the child must be kept only in an observation home (in prescribed manner) until the Board can consider the case.
-                  <li>If the Board refuses bail, it must order the child to an observation home or place of safety for a period specified while the inquiry continues.</li>
+                  4.A If the officer-in-charge refuses to release, the child
+                  must be kept only in an observation home (in prescribed
+                  manner) until the Board can consider the case.
+                  <li>
+                    If the Board refuses bail, it must order the child to an
+                    observation home or place of safety for a period specified
+                    while the inquiry continues.
+                  </li>
                 </h3>
                 <ul className="list-disc pl-4 space-y-2">
                   <li>Child must be kept only in an observation home.</li>

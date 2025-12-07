@@ -1,19 +1,22 @@
-import React from 'react';
-import ContentView from '../../components/ContentView';
-import { TOPIC_CONTENT } from '../../constants';
+import React from "react";
+import ContentView from "../../components/ContentView";
+import { TOPIC_CONTENT } from "../../constants";
+import ConstImg from "../../assets/images/const.png";
 
-const PocsoActPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({ onBack, onHome }) => {
-  const data = { ...TOPIC_CONTENT['cat-pocso'], subtitle: 'Children in Need of Care and Protection' };
+const PocsoActPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
+  onBack,
+  onHome,
+}) => {
+  const data = {
+    ...TOPIC_CONTENT["cat-pocso"],
+    subtitle: "Children in Need of Care and Protection",
+    characterImage: ConstImg,
+  };
   return (
     <ContentView data={data} onBack={onBack} onHome={onHome}>
-      <p>The POCSO Act (2012) was enacted to protect children from sexual assault, sexual harassment, and pornography.</p>
-      <h3 className="text-xl font-bold text-white mt-6 mb-2">Key Features</h3>
-      <ul className="list-disc pl-5 space-y-2">
-        <li>Gender-neutral law.</li>
-        <li>Mandatory reporting of cases.</li>
-        <li>Child-friendly court procedures.</li>
-        <li>No confrontation with the accused.</li>
-      </ul>
+      <h1 style={{ fontSize: "2.5rem", fontWeight: "bold" }}>
+        Content Coming Soon
+      </h1>
     </ContentView>
   );
 };
