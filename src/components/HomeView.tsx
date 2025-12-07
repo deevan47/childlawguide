@@ -127,7 +127,6 @@ const HomeView: React.FC<HomeViewProps> = ({ onDive, onTopicSelect }) => {
           backgroundImage: `radial-gradient(circle at 50% 50%, #b92b2b 0%, #9f1e22 100%)`,
         }}
       >
-
         <div className="container mx-auto px-6 max-w-5xl flex flex-col gap-28 relative z-10">
           {/* 1. CNCP SECTION */}
           <div className="flex flex-col items-center text-center">
@@ -242,7 +241,10 @@ const HomeView: React.FC<HomeViewProps> = ({ onDive, onTopicSelect }) => {
               to all children (under 18) from sexual abuse and exploitation. It
               clearly defines various sexual offenses and is known for its
               child-friendly legal process, which mandates features like
-              closed-door trials and special courts.
+              closed-door trials and special courts.The Act ensures the child's
+              dignity and privacy are maintained throughout the investigation by
+              prohibiting the disclosure of the victim's identity and focusing
+              entirely on the child's well-being.
             </p>
             <SingleButton label="POCSO Act" id="cat-pocso" />
           </div>
