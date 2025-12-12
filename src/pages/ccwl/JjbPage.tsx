@@ -204,7 +204,7 @@ const JjbPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
     subtitle: "Children in Conflict with Law",
     bgImage: jjbBg,
     characterImage: jjbMascot,
-    content: `<p>The Juvenile Justice Board (JJB) is the central and sole legal authority for a Child in Conflict with Law (CCL) under the Juvenile Justice Act. Its main role is to act as a specialised court that prioritises the child's rehabilitation and welfare over punishment. The JJB conducts the entire legal inquiry, ensures the child is handled fairly and protected from the adult criminal system, and decides on the best course of action—such as supervision or placement in a Special Home—always aiming for the child's reform and successful return to society.</p>`,
+    content: `<p>The Juvenile Justice Board (JJB) is the central and sole legal authority for a Child in Conflict with Law (CCL) under the Juvenile Justice Act. Its main role is to act as a specialised court that prioritises the child's rehabilitation and welfare over punishment. The JJB conducts the entire legal inquiry, ensures the child is handled fairly and protected from the adult criminal system, and decides on the best course of action - such as supervision or placement in a Special Home - always aiming for the child's reform and successful return to society.</p>`,
   };
 
   const [activeTab, setActiveTab] = useState("sop");
@@ -275,9 +275,11 @@ const JjbPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
             <div className="mt-6 max-w-2xl text-left space-y-3 font-poppins text-base text-slate-800 font-medium">
               <p>
                 • When a child alleged to be in conflict with law is brought
-                before the Juvenile Justice Board (the Board), the Board begins
-                an inquiry (not a regular court trial) to understand the child’s
-                situation and decide the next steps.
+                before the Juvenile Justice Board (the Board),{" "}
+                <strong>
+                  the Board begins an inquiry (not a regular court trial)
+                </strong>{" "}
+                to understand the child’s situation and decide the next steps.
               </p>
               <p>
                 • The Board may then pass appropriate orders under{" "}
@@ -578,19 +580,23 @@ const JjbPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
                 <img src={jjpa1} alt="Step 1" className="w-full rounded-xl" />
               </div>
               <div className="text-left w-[400px]">
-                <h4 className="font-bold text-lg text-slate-900 mb-2 font-poppins">
+                <h4 className="font-bold text-2xl text-slate-900 mb-2 font-poppins">
                   Step 1: What the Board Assesses
                 </h4>
                 <p className="text-base text-slate-700 leading-relaxed whitespace-pre-line">
                   The Board must evaluate:
                   <br />
-                  • Mental/Physical capacity
-                  <br />
-                  • Ability to understand consequences
-                  <br />
-                  • Circumstances of offence
-                  <br />
-                  This is not a trial, only an assessment.
+                  <li>
+                    The child’s mental and physical capacity to commit the
+                    offence.
+                  </li>
+                  <li>The child’s ability to understand the consequences.</li>
+                  <li>
+                    The circumstances under which the offence was allegedly
+                    committed.
+                  </li>
+                  This is not a trial, only an assessment to decide whether the
+                  child should be tried as a child or as an adult.
                 </p>
               </div>
             </div>
@@ -599,13 +605,14 @@ const JjbPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
           <div className="relative z-10 mt-16 flex justify-end">
             <div className="flex flex-col md:flex-row items-center gap-8 max-w-[800px]">
               <div className="text-right w-[400px] order-2 md:order-1 md:mr-6">
-                <h4 className="font-bold text-lg text-slate-900 mb-2 font-poppins">
-                  Step 2: Notice & Record
+                <h4 className="font-bold text-2xl text-slate-900 mb-2 font-poppins">
+                  Step 2: Expert Support
                 </h4>
                 <p className="text-base text-slate-700 leading-relaxed">
-                  The Board records the statement and circumstances, examines
-                  evidence and decides whether the matter requires further
-                  social investigation or immediate orders.
+                  <li>
+                    The Board may take help from psychologists, psycho-social
+                    workers, or other experts for this assessment.
+                  </li>
                 </p>
               </div>
 
@@ -621,12 +628,15 @@ const JjbPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
                 <img src={jjpa3} alt="Step 3" className="w-full rounded-xl" />
               </div>
               <div className="text-left w-[400px]">
-                <h4 className="font-bold text-lg text-slate-900 mb-2 font-poppins">
-                  Step 3: Social Investigation
+                <h4 className="font-bold text-2xl text-slate-900 mb-2 font-poppins">
+                  Step 3: Timeframe
                 </h4>
                 <p className="text-base text-slate-700 leading-relaxed">
-                  A social investigation report (SIR) is prepared to understand
-                  family, environment and rehabilitation needs of the child.
+                  <li>
+                    The assessment must be completed within 3 months of the
+                    child’s first production before the Board (as per Section
+                    14).
+                  </li>
                 </p>
               </div>
             </div>
@@ -634,13 +644,21 @@ const JjbPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
 
           <div className="relative z-10 mt-16 flex justify-end">
             <div className="flex flex-col md:flex-row items-center gap-8 max-w-[800px]">
-              <div className="text-right w-[400px] order-2 md:order-1 md:mr-6">
-                <h4 className="font-bold text-lg text-slate-900 mb-2 font-poppins">
-                  Step 4: Counselling / Interim Orders
+              <div className="text-left w-[400px] order-2 md:order-1 md:mr-6">
+                <h4 className="font-bold text-2xl text-slate-900 mb-2 font-poppins">
+                  Step 4: Possible Outcomes
                 </h4>
                 <p className="text-base text-slate-700 leading-relaxed">
-                  Based on findings, the Board may give interim orders such as
-                  counselling, supervision or placement pending final decision.
+                  <strong>Outcome: </strong>Board decides the child should be
+                  treated as a child
+                  <br></br>
+                  <strong>Next Step: </strong>Follows the summons case procedure
+                  and disposes of the matter itself.
+                  <br></br> <br></br>
+                  <strong>Outcome: </strong>Board decides the child should be
+                  tried as an adult <br></br>
+                  <strong>Next Step: </strong>Transfers the case to the
+                  Children’s Court for trial as an adult.
                 </p>
               </div>
 
@@ -656,8 +674,8 @@ const JjbPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
                 <img src={jjpa5} alt="Step 5" className="w-full rounded-xl" />
               </div>
               <div className="text-left w-[400px]">
-                <h4 className="font-bold text-lg text-slate-900 mb-2 font-poppins">
-                  5. Orders by the Board after Inquiry
+                <h4 className="font-bold text-2xl text-slate-900 mb-2 font-poppins">
+                  5. 5. Orders by the Board after Inquiry
                 </h4>
               </div>
             </div>
@@ -666,14 +684,9 @@ const JjbPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
           <div className="relative z-10 mt-16 flex justify-end">
             <div className="flex flex-col md:flex-row items-center gap-8 max-w-[800px]">
               <div className="text-right w-[400px] order-2 md:order-1 md:mr-6">
-                <h4 className="font-bold text-lg text-slate-900 mb-2 font-poppins">
-                  Additional Orders (Section 18(2))
+                <h4 className="font-bold text-2xl text-slate-900 mb-2 font-poppins">
+                  Additional Orders the Board Can Add (Section 18(2))
                 </h4>
-                <p className="text-base text-slate-700 leading-relaxed">
-                  These are additional orders the Board may pass based on the
-                  overall assessment, rehabilitation needs, and findings during
-                  inquiry.
-                </p>
               </div>
 
               <div className="w-[400px] relative md:ml-10 order-1 md:order-2">

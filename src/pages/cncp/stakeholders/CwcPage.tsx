@@ -72,7 +72,12 @@ They do this by creating an individual care plan and giving clear instructions t
       },
       {
         id: 4,
-        text: "If there's a complaint about a child being abused in a care institution, the committee must investigate and give directions to the •       police •       District Child Protection Unit•       labour department  •       child line services",
+        text: `If there's a complaint about a child being abused in a care institution, the committee must investigate and give directions to:
+
+• Police  
+• District Child Protection Unit  
+• Labour Department  
+• Childline Services`,
         img: img1_4,
       },
     ],
@@ -171,8 +176,7 @@ const CwcPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
     ...baseData,
     title: "CWC",
     subtitle:
-      "The Child Welfare Committee (CWC) is the only legal group with the power to help a Child in Need of Care and Protection (CNCP).",
-    content: `<p>The Child Welfare Committee (CWC) is the only legal group with the power to help a Child in Need of Care and Protection (CNCP) under the Juvenile Justice Act. It acts like a specialised team focused entirely on the child's welfare and security.</p><br/><p>The CWC takes in CNCPs, checks their history, and makes final decisions on their care. This involves placing children in safe, approved Child Care Institutions (CCIs), arranging for foster care, and legally making a child available for adoption after every effort to find their family fails.</p>`,
+      "The Child Welfare Committee (CWC) is the only legal group with the power to help a Child in Need of Care and Protection (CNCP).",    content: `<p>The Child Welfare Committee (CWC) is the only legal group with the power to help a Child in Need of Care and Protection (CNCP) under the Juvenile Justice Act. It acts like a specialised team focused entirely on the child's welfare and security.</p><br/><p>The CWC takes in CNCPs, checks their history, and makes final decisions on their care. This involves placing children in safe, approved Child Care Institutions (CCIs), arranging for foster care, and legally making a child available for adoption after every effort to find their family fails.</p>`,
     bgImage: policeBg,
     characterImage: mascot,
   };
@@ -292,8 +296,11 @@ const CwcPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
                   </div>
 
                   <div className="w-full md:w-1/2 text-center md:text-left">
-                    <div className="bg-white p-8 rounded-2xl shadow-lg border border-red-50">
-                      <p className="font-poppins text-lg md:text-xl text-slate-700 leading-loose font-medium">
+                    <div className="border border-red-50">
+                      <p
+                        className="font-poppins text-lg md:text-xl text-slate-700 leading-loose font-medium"
+                        style={{ whiteSpace: "pre-line" }}
+                      >
                         {step.text}
                       </p>
                     </div>
@@ -315,15 +322,9 @@ const CwcPage: React.FC<{ onBack: () => void; onHome: () => void }> = ({
 
       {activeMainTab === "guidelines" && (
         <div className="w-full max-w-4xl mx-auto px-6 py-20 text-center">
-          <div className="bg-white border border-red-100 rounded-3xl p-10 shadow-xl">
             <h2 className="text-4xl font-impact text-red-900 mb-6">
-              Treatment Guidelines
+              Content Coming Soon
             </h2>
-            <p className="font-poppins text-lg text-slate-600">
-              Guidelines content is currently being updated. Please refer to the
-              Roles section.
-            </p>
-          </div>
         </div>
       )}
     </ContentView>

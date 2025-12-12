@@ -6,6 +6,7 @@ export interface TopicData {
   subtitle?: string;
   description?: string;
   category?: string;
+  keywords?: string[];
 
   bgImage?: string;
   characterImage?: string;

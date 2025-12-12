@@ -19,6 +19,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     category: "Stakeholder",
     bgImage: ASSETS.policeBg,
     characterImage: ASSETS.boy,
+    keywords: ["contact", "help", "emergency", "report", "crime"],
     content: `<p>Police officers, particularly those in Special Juvenile Police Units (SJPUs) and Child Welfare Police Officers (CWPOs), play a crucial role in the child welfare system. They are often the first point of contact for children in distress.</p>`,
   },
 
@@ -91,6 +92,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: "Child Welfare Committee",
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
+    keywords: ["contact", "judge", "magistrate", "court", "order"],
     content: `<p>The CWC is the primary authority for disposing of cases for the care, protection, treatment, development, and rehabilitation of children in need of care and protection. They have the powers of a Judicial Magistrate.</p>`,
   },
 
@@ -100,6 +102,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: "District Child Protection Unit",
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
+    keywords: ["contact", "district", "unit", "officer"],
     content: `<p>The DCPU coordinates and implements all child rights and protection activities at the district level. They identify families at risk and link them with government welfare schemes.</p>`,
   },
 
@@ -109,6 +112,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: "Government Officials",
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
+    keywords: ["contact", "help", "support", "counseling"],
     content: `<p>Social workers conduct inquiry reports, home studies, and follow-ups to assist the CWC in making informed decisions. They act as a bridge between the child, the family, and the legal system.</p>`,
   },
 
@@ -118,6 +122,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: "Non-Governmental Orgs",
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
+    keywords: ["contact", "help", "support", "shelter"],
     content: `<p>NGOs play a vital role in identifying vulnerable children, running shelter homes, and providing counseling services. They often work in partnership with the government to implement child protection schemes.</p>`,
   },
 
@@ -145,6 +150,7 @@ export const TOPIC_CONTENT: Record<string, TopicData> = {
     subtitle: "Juvenile Justice Board",
     bgImage: ASSETS.bgCommon,
     characterImage: ASSETS.guide,
+    keywords: ["contact", "court", "judge", "justice", "law"],
     content: `<p>The Juvenile Justice Board (JJB) is the central and sole legal authority for a Child in Conflict with Law (CCL) under the Juvenile Justice Act. Its main role is to act as a specialised court that prioritises the child's rehabilitation and welfare over punishment. The JJB conducts the entire legal inquiry, ensures the child is handled fairly and protected from the adult criminal system, and decides on the best course of action—such as supervision or placement in a Special Home—always aiming for the child's reform and successful return to society.</p>`,
   },
 

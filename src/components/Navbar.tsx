@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Menu, X, ChevronDown, ChevronRight, Flame } from "lucide-react";
-import { NAVIGATION_ITEMS } from "../constants";
+import { NAVIGATION_ITEMS, TOPIC_CONTENT } from "../constants";
 import flameLogo from "../assets/images/flame.png";
 
 interface NavbarProps {
@@ -13,6 +13,10 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigateHome, onNavigateTopic }) => {
   const [activeMobileSubmenu, setActiveMobileSubmenu] = useState<string | null>(
     null
   );
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<
+    { id: string; title: string; subtitle?: string }[]
+  >([]);
 
   const handleNavClick = (href?: string) => {
     if (href) {
@@ -47,6 +51,8 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigateHome, onNavigateTopic }) => {
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center h-full space-x-1">
+
+
           {NAVIGATION_ITEMS.map((item, index) => (
             <div
               key={index}
@@ -140,6 +146,78 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigateHome, onNavigateTopic }) => {
               )}
             </div>
           ))}
+
+          {/* Search Bar (Moved to Right) */}
+          <div className="relative ml-4">
+            <div className="flex items-center bg-white rounded-full px-4 py-2 border border-blue-200 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200 transition-all w-64 shadow-sm">
+              <input
+                type="text"
+                placeholder="Search topics..."
+                value={searchQuery}
+                className="bg-transparent border-none outline-none text-slate-700 placeholder-slate-400 text-sm w-full font-medium"
+                onChange={(e) => {
+                  const query = e.target.value;
+                  setSearchQuery(query);
+                  if (query.length > 1) {
+                    const results = Object.values(TOPIC_CONTENT).filter(
+                      (topic) =>
+                        topic.title.toLowerCase().includes(query.toLowerCase()) ||
+                        (topic.subtitle &&
+                          topic.subtitle
+                            .toLowerCase()
+                            .includes(query.toLowerCase())) ||
+                        (topic.keywords &&
+                          topic.keywords.some((k) =>
+                            k.toLowerCase().includes(query.toLowerCase())
+                          ))
+                    );
+                    setSearchResults(results);
+                  } else {
+                    setSearchResults([]);
+                  }
+                }}
+                onBlur={() => setTimeout(() => setSearchResults([]), 200)}
+              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 text-slate-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </div>
+
+            {/* Search Results Dropdown */}
+            {searchResults.length > 0 && (
+              <div className="absolute top-full right-0 w-80 bg-white text-slate-800 shadow-2xl rounded-xl border border-slate-100 mt-2 overflow-hidden z-[10000]">
+                {searchResults.map((result) => (
+                  <button
+                    key={result.id}
+                    onClick={() => {
+                      handleNavClick(result.id);
+                      setSearchQuery("");
+                      setSearchResults([]);
+                    }}
+                    className="w-full text-left px-4 py-3 hover:bg-blue-50 border-b border-slate-100 last:border-none transition-colors"
+                  >
+                    <div className="font-bold text-sm text-blue-900">
+                      {result.title}
+                    </div>
+                    <div className="text-xs text-slate-500">
+                      {result.subtitle}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Mobile Hamburger */}
@@ -172,9 +250,8 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigateHome, onNavigateTopic }) => {
                   <span>{item.label}</span>
                   {item.subItems && (
                     <ChevronDown
-                      className={`transition-transform duration-300 ${
-                        activeMobileSubmenu === item.label ? "rotate-180" : ""
-                      }`}
+                      className={`transition-transform duration-300 ${activeMobileSubmenu === item.label ? "rotate-180" : ""
+                        }`}
                     />
                   )}
                 </div>

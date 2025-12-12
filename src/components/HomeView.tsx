@@ -78,15 +78,29 @@ const HomeView: React.FC<HomeViewProps> = ({ onDive, onTopicSelect }) => {
           <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
         </div>
 
+        <div className="absolute top-24 right-6 z-50 flex gap-2">
+          <button className="bg-white text-black font-bold px-3 py-1 rounded border border-gray-300 hover:bg-gray-100 transition-colors text-sm">
+            EN
+          </button>
+          <div className="w-[1px] h-6 bg-gray-400 my-auto"></div>
+          <button className="bg-white/80 text-black font-bold px-3 py-1 rounded border border-gray-300 hover:bg-gray-100 transition-colors text-sm">
+            हि
+          </button>
+          <div className="w-[1px] h-6 bg-gray-400 my-auto"></div>
+          <button className="bg-white/80 text-black font-bold px-3 py-1 rounded border border-gray-300 hover:bg-gray-100 transition-colors text-sm">
+            मर
+          </button>
+        </div>
+
         <div className="container mx-auto px-6 z-10 grid lg:grid-cols-2 gap-12 h-full items-center relative">
           <div className="text-white space-y-4 flex flex-col justify-center animate-fade-in-up text-center lg:text-left h-full pb-20 lg:pb-0">
-            <h3 className="koulen-text uppercase text-gray-300 text-2xl md:text-4xl font-bold tracking-wide">
-              ONE STOP GUIDE ON HOW TO DEAL WITH
-            </h3>
-            <h1 className="impact-text font-black leading-tight text-5xl md:text-7xl lg:text-8xl">
-              Children in Conflict with the Law and Children in Need of Care and
-              Protection
+            <h1 className="impact-text font-black leading-tight text-8xl md:text-9xl lg:text-[10rem] tracking-tighter">
+              J-SAFE
             </h1>
+            <h3 className="koulen-text uppercase text-gray-200 text-xl md:text-3xl font-bold tracking-wide leading-relaxed">
+              JUVENILE- SAFETY, ACCESSIBILITY, FACILITATION
+              <br /> AND EMPOWERMENT
+            </h3>
           </div>
 
           <div className="relative h-full flex items-end justify-center lg:justify-end pb-0">
@@ -114,7 +128,6 @@ const HomeView: React.FC<HomeViewProps> = ({ onDive, onTopicSelect }) => {
               className="group bg-black text-white px-10 py-5 rounded-full font-bold text-lg flex items-center space-x-3 hover:scale-110 transition-transform duration-300 border border-gray-700 shadow-[0_0_30px_rgba(59,130,246,0.3)] hover:shadow-blue-500/50"
             >
               <span>Dive into the Web</span>
-              <ArrowRight className="group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
         </div>
