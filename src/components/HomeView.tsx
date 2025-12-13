@@ -106,7 +106,7 @@ const HomeView: React.FC<HomeViewProps> = ({ onDive, onTopicSelect }) => {
           <div className="relative h-full flex items-end justify-center lg:justify-end pb-0">
             <div className="relative flex items-end -space-x-12 md:-space-x-24 translate-y-4 lg:translate-y-0">
               <div className="absolute -top-40 left-1/2 -translate-x-1/2 animate-bounce-slow z-30 w-48 bg-white text-black p-4 rounded-2xl rounded-bl-none shadow-xl text-sm font-semibold text-center hidden md:block border border-gray-200">
-                Hello! Welcome to our one–stop guide on how to help CCL and
+                Hi my name is Raj and she's Simran<br></br>Hello! Welcome to our one–stop guide on how to help CCL and
                 CNCP. We will be your guides to the website!
               </div>
               <img
